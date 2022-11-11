@@ -76,7 +76,6 @@ export const SidebarContent = () => {
     queryKey: ['courses'],
     queryFn: () => GetCourses({userId: cachedUser.id}),
     onSuccess: (data) => {
-      console.log(data.data)
       SidebarQueryOnSuccess({
         parentName: 'Courses',
         href_start: `${institution}/course`,

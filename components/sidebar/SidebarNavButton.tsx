@@ -43,7 +43,6 @@ export const SidebarNavButton = ({
 
   
   const levelSpacing = () => {
-    console.log(`${item.icon}, ${item.level}`)
     if (item.icon) {
       switch(item.level) {
         case 2:

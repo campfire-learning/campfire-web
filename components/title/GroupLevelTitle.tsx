@@ -13,7 +13,6 @@ export const GroupLevelTitle = () => {
   } as map
 
   const title = titleRemap[selectedGroupLevel.name as string] ?? selectedGroupLevel.name
-  console.log(selectedGroupLevel)
   
   return (
     <>
