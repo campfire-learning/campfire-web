@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { SubmitLogin } from '../../api/login';
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation';
-import { ErrorAlert } from 'components/Alert/ErrorAlert';
+import { ErrorAlert } from 'components/alert/ErrorAlert';
 import { LoadingIcon } from 'components/assets/LoadingIcon';
 
 export const LoginForm = () => {
