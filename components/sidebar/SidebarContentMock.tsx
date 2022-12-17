@@ -29,7 +29,7 @@ export interface Content {
 
 export type ContentType = Content[]
 
-export const SidebarContent = () => {
+export const SidebarContentMock = () => {
 
   const cachedUser = JSON.parse((typeof window !== 'undefined') && localStorage.getItem('user') || "null");
 
@@ -138,25 +138,25 @@ export const SidebarContent = () => {
   ]
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col bg-zinc-800">
-      <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+    <div className="flex min-h-0 flex-1 flex-col bg-zinc-700">
+      <div className="flex flex-1 flex-col overflow-y-auto pt-0 pb-4">
         <div className="flex flex-shrink-0 items-center px-3">
-          <CampfireLogo 
+          {/* <CampfireLogo 
           className="h-9 w-auto fill-amber-700 hover:cursor-pointer"
-          redirect={institution}/>
+          redirect={institution}/> */}
         </div>
         <div className="flex flex-col flex-1">
           <SidebarNavSection
           content={content}
           spaceTop={true}
           />
-          <SidebarNavSection
+          {/* <SidebarNavSection
           content={contentTwo}
           atBottom={true}
-          />
+          /> */}
         </div>
       </div>
-      <BottomBar/>
+      {/* <BottomBar/> */}
     </div>
   )
  }

@@ -6,6 +6,7 @@ import { OpenSidebar } from 'components/sidebar/OpenSidebar'
 import { SidebarContent } from 'components/sidebar/SidebarContent'
 import { ProtectedRoute } from 'components/routing/ProtectedRoute'
 import { SidebarContext } from 'components/context/SidebarContext'
+import { SidebarContentMock } from 'components/sidebar/SidebarContentMock'
 
 export default function SidebarLayout({
   children,
@@ -18,11 +19,14 @@ export default function SidebarLayout({
   return (
     <ProtectedRoute>
       <SidebarContext>
+      <div className="flex flex-row">
         {/* Desktop */}
-        <div className='bg-zinc-800 md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col'>
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col px-1">
+        <div className='hidden bg-zinc-800 md:fixed md:inset-y-0 md:flex md:w-48 md:flex-col px-1'>
             <SidebarContent />
         </div>
+
+        <div className='hidden bg-zinc-700 md:fixed md:left-48 md:inset-y-0 md:flex md:w-64 md:flex-col px-1'>
+        <SidebarContentMock />
         </div>
 
         {/* Mobile */}
@@ -33,7 +37,7 @@ export default function SidebarLayout({
         <SidebarContent/>
         </SidebarAnimation>
 
-        <div className="flex flex-col md:pl-64 h-screen">
+        <div className="grow flex flex-col md:pl-[28rem] h-screen">
           <OpenSidebar
           setSidebarOpen={setSidebarOpen}
           />
@@ -41,6 +45,7 @@ export default function SidebarLayout({
           {children}
           </div>
         </div>
+      </div>
       </SidebarContext>
     </ProtectedRoute>
   )
