@@ -1,7 +1,5 @@
-import { FindNew } from "components/findNew/FindNew";
+import { FindNew } from "components/find-new/FindNew";
 
 export default function FindClubsPage() {
-  return (
-      <FindNew/>
-  )
+  return <FindNew />;
 }

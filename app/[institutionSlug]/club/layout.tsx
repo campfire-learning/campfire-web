@@ -1,24 +1,22 @@
-'use client'
+"use client";
 
-import { NewspaperIcon, UsersIcon } from "@heroicons/react/24/outline"
-import { TabBar } from 'components/tabBar/TabBar'
+import { NewspaperIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { TabBar } from "components/tab-bar/TabBar";
 
 export default function ClubLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-
   const clubTabs = [
-    { name: 'Club Details', href: '#', icon: NewspaperIcon, current: false },
-    { name: 'Club Members', href: '#', icon: UsersIcon, current: true },
-  ]
+    { name: "Club Details", href: "#", icon: NewspaperIcon, current: false },
+    { name: "Club Members", href: "#", icon: UsersIcon, current: true },
+  ];
 
   return (
-      <>
-        <TabBar
-        tabs={clubTabs}/>
-        {children}
-      </>
-  )
+    <>
+      <TabBar tabs={clubTabs} />
+      {children}
+    </>
+  );
 }

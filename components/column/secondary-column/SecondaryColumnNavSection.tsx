@@ -2,7 +2,7 @@
 
 import * as Accordion from '@radix-ui/react-accordion';
 import { styled, keyframes } from '@stitches/react';
-import { ColumnNavButton } from './ColumnNavButton';
+import { ColumnNavButton } from './SecondaryColumnNavButton';
 
 export const ColumnNavSection = ({
   atBottom,
