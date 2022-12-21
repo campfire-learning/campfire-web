@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios";
 import { Dispatch, SetStateAction } from "react";
-import { Content, ContentType } from "./SidebarContent";
+import { Content, ContentType } from "./ColumnContent";
 
-export const SidebarQueryOnSuccess = ({
+export const SecondayContentQueryOnSuccess = ({
   parentName,
   href_start,
   content,

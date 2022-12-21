@@ -1,4 +1,4 @@
-import { SelectedChannelLevel, SelectedGroupLevel } from "components/context/SidebarContext"
+import { SelectedChannelLevel, SelectedGroupLevel } from "components/context/PageContext"
 import { useContext } from "react"
 
 export const ChannelLevelTitle = () => {

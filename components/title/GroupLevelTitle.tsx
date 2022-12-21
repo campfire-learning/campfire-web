@@ -1,4 +1,4 @@
-import { SelectedGroupLevel } from "components/context/SidebarContext"
+import { SelectedGroupLevel } from "components/context/PageContext"
 import { useContext } from "react"
 
 export const GroupLevelTitle = () => {

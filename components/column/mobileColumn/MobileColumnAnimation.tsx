@@ -4,19 +4,19 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 
-export const SidebarAnimation = ({
+export const MobileColumnAnimation = ({
   children,
-  sidebarOpen,
-  setSidebarOpen
+  columnOpen,
+  setColumnOpen
 }: {
   children: React.ReactNode
-  sidebarOpen: boolean
-  setSidebarOpen: (value: boolean) => void
+  columnOpen: boolean
+  setColumnOpen: (value: boolean) => void
 }) => {
   
   return (
-    <Transition.Root show={sidebarOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
+    <Transition.Root show={columnOpen} as={Fragment}>
+      <Dialog as="div" className="relative z-40 md:hidden" onClose={setColumnOpen}>
         <Transition.Child
           as={Fragment}
           enter="transition-opacity ease-linear duration-300"
@@ -53,7 +53,7 @@ export const SidebarAnimation = ({
                   <button
                     type="button"
                     className="ml-1 flex h-10 w-10 items-center justify-center"
-                    onClick={() => setSidebarOpen(false)}
+                    onClick={() => setColumnOpen(false)}
                   >
                     <span className="sr-only">Close sidebar</span>
                     <XMarkIcon className="h-6 w-6 text-gray-300 hover:text-gray-100" aria-hidden="true" />

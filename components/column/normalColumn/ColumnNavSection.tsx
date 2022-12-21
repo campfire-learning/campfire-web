@@ -2,9 +2,9 @@
 
 import * as Accordion from '@radix-ui/react-accordion';
 import { styled, keyframes } from '@stitches/react';
-import { SidebarNavButton } from './SidebarNavButton';
+import { ColumnNavButton } from './ColumnNavButton';
 
-export const SidebarNavSection = ({
+export const ColumnNavSection = ({
   atBottom,
   spaceTop,
   content,
@@ -61,16 +61,16 @@ export const SidebarNavSection = ({
         : 'mt-0'} 
         'space-y-1 px-2'`
       }
-      aria-label="Sidebar"
+      aria-label="Column"
     >
     {content.map((item) => (
       <Accordion.Root type="multiple" key={item.href} defaultValue={openAccordionSaved}>
         <Accordion.Item value={item.href} >
-          <SidebarNavButton item={item} content={fullContent} onClickFunction={toggleAccordionOpen}/>
+          <ColumnNavButton item={item} content={fullContent} onClickFunction={toggleAccordionOpen}/>
 
           {item.children?.length > 0 &&
           <AccordionContent> 
-            <SidebarNavSection content={item.children} fullContent={item}/>
+            <ColumnNavSection content={item.children} fullContent={item}/>
           </AccordionContent>}
 
         </Accordion.Item>
