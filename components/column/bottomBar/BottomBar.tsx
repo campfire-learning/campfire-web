@@ -1,8 +1,10 @@
-'use client' 
-
 import { startCase } from 'lodash';
 
-export const BottomBar = () => {
+export const BottomBar = ({
+  isMini,
+}:{
+  isMini?: boolean,
+}) => {
   const localStorageExists = (typeof window !== 'undefined')
 
   const firstName = localStorageExists && JSON.parse(localStorage.getItem('user') || 'null')?.first_name
@@ -10,12 +12,12 @@ export const BottomBar = () => {
   const role = localStorageExists && startCase(JSON.parse(localStorage.getItem('user') || 'null')?.user_type)
 
   return (
-    <div className="flex flex-shrink-0 bg-zinc-800 border-t border-zinc-700 p-4">
+    <div className="flex flex-shrink-0 border-t border-zinc-700 px-4 pt-4 pb-2">
       <div className="group block w-full flex-shrink-0">
-        <div className="flex items-center">
+        {!isMini && <div className="flex items-center">
           <div>
             <img
-              className="inline-block h-9 w-9 rounded-full"
+              className="inline-block w-9 rounded-full"
               src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
               alt=""
             />
@@ -24,7 +26,18 @@ export const BottomBar = () => {
             <p className="text-sm font-medium text-white">{firstName} {lastName}</p>
             <p className="text-xs font-medium text-gray-300">{role}</p>
           </div>
-        </div>
+        </div>}
+
+        {isMini && <div className="flex flex-col items-center">
+            <img
+              className="inline-block w-11 rounded-full"
+              src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+              alt=""
+            />
+              <p className="text-xs font-medium text-gray-200 mt-2">{firstName} {lastName}</p>
+              <p className="text-xs font-medium text-gray-300">{role}</p>
+          </div>
+        }
       </div>
     </div>
   )

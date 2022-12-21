@@ -1,6 +1,6 @@
 import { Tab } from '@headlessui/react'
 import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from '@heroicons/react/20/solid'
-import { SelectedChannelLevel, SelectedGroupLevel } from 'components/context/SidebarContext'
+import { SelectedChannelLevel, SelectedGroupLevel } from 'components/context/PageContext'
 import { useContext } from 'react'
 
 export const ChatPage = () => {

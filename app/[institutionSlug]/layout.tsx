@@ -1,47 +1,50 @@
 'use client'
 
 import { useState  } from 'react'
-import { SidebarAnimation } from 'components/sidebar/SidebarAnimation'
-import { OpenSidebar } from 'components/sidebar/OpenSidebar'
-import { SidebarContent } from 'components/sidebar/SidebarContent'
+import { MobileColumnAnimation } from 'components/column/mobileColumn/MobileColumnAnimation'
+import { MobileOpenColumn } from 'components/column/mobileColumn/MobileOpenColumn'
+import { ColumnContent } from 'components/column/normalColumn/ColumnContent'
 import { ProtectedRoute } from 'components/routing/ProtectedRoute'
-import { SidebarContext } from 'components/context/SidebarContext'
+import { PageContext } from 'components/context/PageContext'
+import { SkinnyColumnContent } from 'components/column/skinnyColumn/SkinnyColumnContent'
 
-export default function SidebarLayout({
+export default function InstitutionLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
 
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [mobileColumnOpen, setMobileColumnOpen] = useState(false)
 
   return (
     <ProtectedRoute>
-      <SidebarContext>
+      <PageContext>
+      <div className="flex h-screen bg-zinc-900">
         {/* Desktop */}
-        <div className='bg-zinc-800 md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col'>
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col px-1">
-            <SidebarContent />
-        </div>
+        <div className='flex h-screen py-2 bg-zinc-800'>
+          <div className='hidden overflow-y-auto bg-zinc-800 md:block md:w28'>
+              <SkinnyColumnContent />
+          </div>
         </div>
 
         {/* Mobile */}
-        <SidebarAnimation
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
+        <MobileColumnAnimation
+        columnOpen={mobileColumnOpen}
+        setColumnOpen={setMobileColumnOpen}
         >
-        <SidebarContent/>
-        </SidebarAnimation>
+        <ColumnContent/>
+        </MobileColumnAnimation>
 
-        <div className="flex flex-col md:pl-64 h-screen">
-          <OpenSidebar
-          setSidebarOpen={setSidebarOpen}
+        <div className="relative grow flex flex-col h-screen">
+          <MobileOpenColumn
+          setColumnOpen={setMobileColumnOpen}
           />
-          <div className="flex-auto bg-zinc-900">
-          {children}
+          <div className="flex-auto">
+            {children}
           </div>
         </div>
-      </SidebarContext>
+      </div>
+      </PageContext>
     </ProtectedRoute>
   )
 }

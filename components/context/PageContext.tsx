@@ -25,7 +25,7 @@ const SelectedGroupLevel = createContext<ISelectedGroupLevel>(defaultSelectedGro
 
 export {SelectedChannelLevel, SelectedGroupLevel}
 
-export const SidebarContext = ({ children } : {children: React.ReactNode}) => {
+export const PageContext = ({ children } : {children: React.ReactNode}) => {
   const [selectedChannelLevel, setSelectedChannelLevel] = useState<Record<string, unknown>>({});
   const [selectedGroupLevel, setSelectedGroupLevel] = useState<Record<string, unknown>>({});
 
