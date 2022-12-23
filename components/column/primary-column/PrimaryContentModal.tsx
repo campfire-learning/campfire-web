@@ -1,12 +1,12 @@
 import { Dialog } from "@headlessui/react";
 import { ModalBaseAnimation } from "components/modal/ModalBaseAnimation";
 import { useState } from "react";
-import { SkinnyColumnContentBase } from "./PrimaryColumnContent";
+import { PrimaryColumnContentBase } from "./PrimaryColumnContent";
 
 export const PrimaryContentModal = ({
   buttonInfo,
 }: {
-  buttonInfo: SkinnyColumnContentBase;
+  buttonInfo: PrimaryColumnContentBase;
 }) => {
   {
     console.log(`in-modal ${buttonInfo}`);

@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { SkinnyColumnContentType } from "./PrimaryColumnContent";
+import { PrimaryColumnContentType } from "./PrimaryColumnContent";
 
-export const SkinnyColumnSection = ({
+export const PrimaryColumnSection = ({
   content,
 }: {
-  content: SkinnyColumnContentType[];
+  content: PrimaryColumnContentType[];
 }) => {
   return (
     <>

@@ -10,10 +10,10 @@ import {
 import { CampfireLogo } from "components/assets/CampfireLogo";
 import { BottomBar } from "../bottom-bar/BottomBar";
 import { SVGProps } from "react";
-import { SkinnyColumnSection } from "./PrimaryColumnSection";
+import { PrimaryColumnSection } from "./PrimaryColumnSection";
 import { PrimaryContentModal } from "./PrimaryContentModal";
 
-export interface SkinnyColumnContentBase {
+export interface PrimaryColumnContentBase {
   name: string;
   icon: (
     props: SVGProps<SVGSVGElement> & {
@@ -23,33 +23,33 @@ export interface SkinnyColumnContentBase {
   ) => JSX.Element;
 }
 
-interface SkinnyColumnContentHref extends SkinnyColumnContentBase {
+interface PrimaryColumnContentHref extends PrimaryColumnContentBase {
   href: string;
   modal?: ({
     buttonInfo,
   }: {
-    buttonInfo: SkinnyColumnContentBase;
+    buttonInfo: PrimaryColumnContentBase;
   }) => JSX.Element;
 }
 
-interface SkinnyColumnContentModal extends SkinnyColumnContentBase {
+interface PrimaryColumnContentModal extends PrimaryColumnContentBase {
   href?: never;
   modal: ({
     buttonInfo,
   }: {
-    buttonInfo: SkinnyColumnContentBase;
+    buttonInfo: PrimaryColumnContentBase;
   }) => JSX.Element;
 }
 
-export type SkinnyColumnContentType =
-  | SkinnyColumnContentHref
-  | SkinnyColumnContentModal;
+export type PrimaryColumnContentType =
+  | PrimaryColumnContentHref
+  | PrimaryColumnContentModal;
 
-export const SkinnyColumnContent = () => {
+export const PrimaryColumnContent = () => {
   const currentPath = usePathname();
   const institution = currentPath.split("/")[1];
 
-  const contentMain: SkinnyColumnContentType[] = [
+  const contentMain: PrimaryColumnContentType[] = [
     {
       name: "Courses",
       icon: AcademicCapIcon,
@@ -77,7 +77,7 @@ export const SkinnyColumnContent = () => {
     },
   ];
 
-  const contentBottom: SkinnyColumnContentType[] = [
+  const contentBottom: PrimaryColumnContentType[] = [
     {
       name: "Settings",
       icon: Cog8ToothIcon,
@@ -100,10 +100,10 @@ export const SkinnyColumnContent = () => {
       </div>
       <div className="w-full px-2 flex flex-1 flex-col justify-between ">
         <div className="mt-4">
-          <SkinnyColumnSection content={contentMain} />
+          <PrimaryColumnSection content={contentMain} />
         </div>
         <div className="mb-0">
-          <SkinnyColumnSection content={contentBottom} />
+          <PrimaryColumnSection content={contentBottom} />
           <BottomBar isMini={true} />
         </div>
       </div>
