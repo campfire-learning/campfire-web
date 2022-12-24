@@ -1,24 +1,22 @@
-import { SecondayContent } from "components/column/normalColumn/SecondayContent"
+import { SecondayContent } from "components/column/secondary-column/SecondayContentWIP";
 
 export default function CourseIdLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <div className="flex h-screen">
       {/* Desktop */}
-      <div className='flex h-screen py-2 bg-zinc-800'>
-        <div className='hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-l border-zinc-700 px-2'>
+      <div className="flex h-screen py-2 bg-zinc-800">
+        <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-l border-zinc-700 px-2">
           <SecondayContent />
         </div>
       </div>
 
       <div className="relative grow flex flex-col h-screen">
-        <div className="flex-auto">
-          {children}
-        </div>
+        <div className="flex-auto">{children}</div>
       </div>
     </div>
-  )
+  );
 }
