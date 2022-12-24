@@ -32,7 +32,7 @@ export const PrimaryContentModal = ({
 
       <ModalBaseAnimation
         modalContent={
-          <Dialog.Panel className="relative transform overflow-y-scroll rounded-lg bg-gray-900 text-left shadow-xl transition-all max-w-[75%] min-w-[25rem] sm:min-w-[60%] my-8 p-6 max-h-[95vh]">
+          <Dialog.Panel className="relative transform overflow-y-scroll rounded-lg bg-gray-900 text-left transition-all max-w-[75%] min-w-[25rem] sm:min-w-[60%] p-6 max-h-[90vh]">
             <div className="absolute top-0 right-0 pt-4 pr-4 block">
               <button
                 type="button"

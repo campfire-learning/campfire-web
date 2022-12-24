@@ -19,8 +19,8 @@ const PrimaryContentModalContentListStyle = ({
 
 
   return(
-  <div className="py-5">
-    <div className="overflow-hidden bg-gray-800 outline outline-gray-400 shadow rounded-md">
+  <div className="pt-5">
+    <div className="overflow-y-scroll max-h-[70vh] bg-gray-800 outline outline-gray-400 rounded-md">
       <ul role="list" className="divide-y divide-gray-400">
         {list && list.map((listItem) => (
           <li key={listItem.id} onClick={() => setModalState(false)}>
