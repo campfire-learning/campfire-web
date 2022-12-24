@@ -1,14 +1,14 @@
 import { Dialog } from "@headlessui/react";
 import { ModalBaseAnimation } from "components/modal/ModalBaseAnimation";
 import { useState } from "react";
-import { PrimaryColumnContentBase } from "./PrimaryColumnContent";
+import { PrimaryItemBase } from "./PrimaryItem";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { PrimaryContentModalContent } from "./PrimaryContentModalContent";
+import { PrimaryItemModalContent } from "./PrimaryItemModalContent";
 
-export const PrimaryContentModal = ({
+export const PrimaryItemModal = ({
   buttonInfo,
 }: {
-  buttonInfo: PrimaryColumnContentBase;
+  buttonInfo: PrimaryItemBase;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -44,19 +44,21 @@ export const PrimaryContentModal = ({
               </button>
             </div>
             <div className="ml-4 text-left"></div>
-            <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-300 display:inline">
-            <p className="flex space-x-1">
-              <div>
-              <buttonInfo.icon className="w-6"/>
-              </div>
-              <div>
-                {buttonInfo.name}
-              </div>
-            </p>
+            <Dialog.Title
+              as="h3"
+              className="text-lg font-medium leading-6 text-gray-300 display:inline"
+            >
+              <p className="flex space-x-1">
+                <div>
+                  <buttonInfo.icon className="w-6" />
+                </div>
+                <div>{buttonInfo.name}</div>
+              </p>
             </Dialog.Title>
-            <PrimaryContentModalContent
-            setModalState={setOpen}
-            modalType={buttonInfo.name}/>
+            <PrimaryItemModalContent
+              setModalState={setOpen}
+              modalType={buttonInfo.name}
+            />
           </Dialog.Panel>
         }
         open={open}

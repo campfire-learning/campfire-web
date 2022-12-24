@@ -6,7 +6,7 @@ import { MobileOpenColumn } from "components/column/mobile/MobileOpenColumn";
 import { ColumnContent } from "components/column/secondary-column/SecondaryColumnContent";
 import { ProtectedRoute } from "components/routing/ProtectedRoute";
 import { PageContext } from "components/context/PageContext";
-import { PrimaryColumnContent } from "components/column/primary-column/PrimaryColumnContent";
+import { PrimaryColumnItem } from "components/column/primary-column/PrimaryItem";
 
 export default function InstitutionLayout({
   children,
@@ -22,7 +22,7 @@ export default function InstitutionLayout({
           {/* Desktop */}
           <div className="flex h-screen py-2 bg-zinc-800">
             <div className="hidden overflow-y-auto bg-zinc-800 md:block md:w28">
-              <PrimaryColumnContent />
+              <PrimaryColumnItem />
             </div>
           </div>
 

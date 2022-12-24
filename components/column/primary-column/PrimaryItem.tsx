@@ -11,9 +11,9 @@ import { CampfireLogo } from "components/assets/CampfireLogo";
 import { BottomBar } from "../bottom-bar/BottomBar";
 import { SVGProps } from "react";
 import { PrimaryColumnSection } from "./PrimaryColumnSection";
-import { PrimaryContentModal } from "./PrimaryContentModal";
+import { PrimaryItemModal } from "./PrimaryItemModal";
 
-export interface PrimaryColumnContentBase {
+export interface PrimaryItemBase {
   name: string;
   icon: (
     props: SVGProps<SVGSVGElement> & {
@@ -23,38 +23,28 @@ export interface PrimaryColumnContentBase {
   ) => JSX.Element;
 }
 
-interface PrimaryColumnContentHref extends PrimaryColumnContentBase {
+interface PrimaryItemHref extends PrimaryItemBase {
   href: string;
-  modal?: ({
-    buttonInfo,
-  }: {
-    buttonInfo: PrimaryColumnContentBase;
-  }) => JSX.Element;
+  modal?: ({ buttonInfo }: { buttonInfo: PrimaryItemBase }) => JSX.Element;
 }
 
-interface PrimaryColumnContentModal extends PrimaryColumnContentBase {
+interface PrimaryItemModal extends PrimaryItemBase {
   href?: never;
-  modal: ({
-    buttonInfo,
-  }: {
-    buttonInfo: PrimaryColumnContentBase;
-  }) => JSX.Element;
+  modal: ({ buttonInfo }: { buttonInfo: PrimaryItemBase }) => JSX.Element;
 }
 
-export type PrimaryColumnContentType =
-  | PrimaryColumnContentHref
-  | PrimaryColumnContentModal;
+export type PrimaryItemType = PrimaryItemHref | PrimaryItemModal;
 
-export const PrimaryColumnContent = () => {
+export const PrimaryColumnItem = () => {
   const currentPath = usePathname();
-  const institution = currentPath.split("/")[1];
+  const institution = currentPath?.split("/")[1];
 
-  const contentMain: PrimaryColumnContentType[] = [
+  const sectionMain: PrimaryItemType[] = [
     {
       name: "Courses",
       icon: AcademicCapIcon,
       modal: () => (
-        <PrimaryContentModal
+        <PrimaryItemModal
           buttonInfo={{ name: "Courses", icon: AcademicCapIcon }}
         />
       ),
@@ -63,21 +53,21 @@ export const PrimaryColumnContent = () => {
       name: "Clubs",
       icon: TrophyIcon,
       modal: () => (
-        <PrimaryContentModal buttonInfo={{ name: "Clubs", icon: TrophyIcon }} />
+        <PrimaryItemModal buttonInfo={{ name: "Clubs", icon: TrophyIcon }} />
       ),
     },
     {
       name: "Interests",
       icon: UserGroupIcon,
       modal: () => (
-        <PrimaryContentModal
+        <PrimaryItemModal
           buttonInfo={{ name: "Interests", icon: UserGroupIcon }}
         />
       ),
     },
   ];
 
-  const contentBottom: PrimaryColumnContentType[] = [
+  const sectionBottom: PrimaryItemType[] = [
     {
       name: "Settings",
       icon: Cog8ToothIcon,
@@ -100,10 +90,10 @@ export const PrimaryColumnContent = () => {
       </div>
       <div className="w-full px-2 flex flex-1 flex-col justify-between ">
         <div className="mt-4">
-          <PrimaryColumnSection content={contentMain} />
+          <PrimaryColumnSection content={sectionMain} />
         </div>
         <div className="mb-0">
-          <PrimaryColumnSection content={contentBottom} />
+          <PrimaryColumnSection content={sectionBottom} />
           <BottomBar isMini={true} />
         </div>
       </div>
