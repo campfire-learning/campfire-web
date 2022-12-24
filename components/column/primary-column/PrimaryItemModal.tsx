@@ -1,7 +1,7 @@
 import { Dialog } from "@headlessui/react";
 import { ModalBaseAnimation } from "components/modal/ModalBaseAnimation";
 import { useState } from "react";
-import { PrimaryItemBase } from "./PrimaryItem";
+import { PrimaryItemBase } from "./PrimaryColumn";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { PrimaryItemModalContent } from "./PrimaryItemModalContent";
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PrimaryItemType } from "./PrimaryItem";
+import { PrimaryItemType } from "./PrimaryColumn";
 
 export const PrimaryColumnSection = ({
   content,
