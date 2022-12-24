@@ -74,6 +74,7 @@ export const SecondayContent = () => {
         content,
         setContent,
         data,
+        noChildren: true,
       });
     },
     onError: (error) => {
@@ -91,6 +92,7 @@ export const SecondayContent = () => {
         content,
         setContent,
         data,
+        noChildren: true,
       });
     },
     onError: (error) => {

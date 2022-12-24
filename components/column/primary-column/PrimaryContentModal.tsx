@@ -2,20 +2,18 @@ import { Dialog } from "@headlessui/react";
 import { ModalBaseAnimation } from "components/modal/ModalBaseAnimation";
 import { useState } from "react";
 import { PrimaryColumnContentBase } from "./PrimaryColumnContent";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { PrimaryContentModalContent } from "./PrimaryContentModalContent";
 
 export const PrimaryContentModal = ({
   buttonInfo,
 }: {
   buttonInfo: PrimaryColumnContentBase;
 }) => {
-  {
-    console.log(`in-modal ${buttonInfo}`);
-  }
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {console.log(`in-modal ${buttonInfo}`)}
       {buttonInfo && (
         <button
           key={buttonInfo.name}
@@ -34,10 +32,31 @@ export const PrimaryContentModal = ({
 
       <ModalBaseAnimation
         modalContent={
-          <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
-            <p className="text-sm text-gray-500">
-              {`Modal listing ${buttonInfo.name}, create new ${buttonInfo.name}, find new ${buttonInfo.name} here.`}
+          <Dialog.Panel className="relative transform overflow-y-scroll rounded-lg bg-gray-900 text-left shadow-xl transition-all max-w-[75%] min-w-[25rem] sm:min-w-[60%] my-8 p-6 max-h-[95vh]">
+            <div className="absolute top-0 right-0 pt-4 pr-4 block">
+              <button
+                type="button"
+                className="rounded-md bg-gray-900 text-gray-400 hover:text-gray-300 focus:outline-none"
+                onClick={() => setOpen(false)}
+              >
+                <span className="sr-only">Close</span>
+                <XMarkIcon className=" w-6" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="ml-4 text-left"></div>
+            <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-300 display:inline">
+            <p className="flex space-x-1">
+              <div>
+              <buttonInfo.icon className="w-6"/>
+              </div>
+              <div>
+                {buttonInfo.name}
+              </div>
             </p>
+            </Dialog.Title>
+            <PrimaryContentModalContent
+            setModalState={setOpen}
+            modalType={buttonInfo.name}/>
           </Dialog.Panel>
         }
         open={open}

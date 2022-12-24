@@ -25,8 +25,7 @@ export const PrimaryColumnSection = ({
               </span>
             </Link>
           )}
-          {console.log(`pre-modal ${item.name}`)}
-          {item.modal && <item.modal />}
+          {item.modal && <item.modal key={item.name}/>}
         </>
       ))}
     </>
