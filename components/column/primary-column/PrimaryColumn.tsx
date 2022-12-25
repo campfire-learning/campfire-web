@@ -9,9 +9,10 @@ import {
 } from "@heroicons/react/24/outline";
 import { CampfireLogo } from "components/assets/CampfireLogo";
 import { BottomBar } from "../bottom-bar/BottomBar";
-import { SVGProps } from "react";
+import { SVGProps, useState } from "react";
 import { PrimaryColumnSection } from "./PrimaryColumnSection";
 import { PrimaryItemModal } from "./PrimaryItemModal";
+
 
 export interface PrimaryItemBase {
   name: string;
@@ -23,19 +24,21 @@ export interface PrimaryItemBase {
   ) => JSX.Element;
 }
 
-interface PrimaryItemHref extends PrimaryItemBase {
-  href: string;
-  modal?: ({ buttonInfo }: { buttonInfo: PrimaryItemBase }) => JSX.Element;
+export interface PrimaryItemType extends PrimaryItemBase {
+  href?: string;
+  modal?: ({ itemInfo }: { itemInfo: PrimaryItemBase }) => JSX.Element;
 }
 
-interface PrimaryItemModal extends PrimaryItemBase {
-  href?: never;
-  modal: ({ buttonInfo }: { buttonInfo: PrimaryItemBase }) => JSX.Element;
-}
+export interface Course { 
+  name: string;
+  description: string;
+};
 
-export type PrimaryItemType = PrimaryItemHref | PrimaryItemModal;
+export type CourseList = Course[];
 
 export const PrimaryColumn = () => {
+  const [courses, setCourses] = useState<CourseList>([]);
+
   const currentPath = usePathname();
   const institution = currentPath?.split("/")[1];
 
@@ -45,7 +48,7 @@ export const PrimaryColumn = () => {
       icon: AcademicCapIcon,
       modal: () => (
         <PrimaryItemModal
-          buttonInfo={{ name: "Courses", icon: AcademicCapIcon }}
+        itemInfo={{ name: "Courses", icon: AcademicCapIcon }}
         />
       ),
     },
@@ -53,15 +56,14 @@ export const PrimaryColumn = () => {
       name: "Clubs",
       icon: TrophyIcon,
       modal: () => (
-        <PrimaryItemModal buttonInfo={{ name: "Clubs", icon: TrophyIcon }} />
+        <PrimaryItemModal itemInfo={{ name: "Clubs", icon: TrophyIcon }} />
       ),
     },
     {
       name: "Interests",
       icon: UserGroupIcon,
       modal: () => (
-        <PrimaryItemModal
-          buttonInfo={{ name: "Interests", icon: UserGroupIcon }}
+        <PrimaryItemModal itemInfo={{ name: "Interests", icon: UserGroupIcon }}
         />
       ),
     },

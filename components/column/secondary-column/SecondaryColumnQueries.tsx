@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { Dispatch, SetStateAction } from "react";
-import { Content, ContentType } from "./SecondaryColumnContent";
+import { SecondaryItem, SecondaryItemList } from "./SecondaryColumn";
 
 export const SecondayContentQueryOnSuccess = ({
   parentName,
@@ -12,8 +12,8 @@ export const SecondayContentQueryOnSuccess = ({
 }: {
   parentName: string;
   href_start: string;
-  content: ContentType;
-  setContent: Dispatch<SetStateAction<ContentType>>;
+  content: SecondaryItemList;
+  setContent: Dispatch<SetStateAction<SecondaryItemList>>;
   data: AxiosResponse<any, any>;
   noChildren?: boolean;
 }) => {
@@ -32,7 +32,7 @@ export const SecondayContentQueryOnSuccess = ({
               level: 3,
               href: `${href_start}/${x.id}/channel/${channel.id}`,
             })),
-      } as Content)
+      } as SecondaryItem)
   );
   if (data.data.length == 0) {
     delete contentCopy[courseIndex].children;
