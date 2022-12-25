@@ -7,19 +7,19 @@ export const SecondayContentQueryOnSuccess = ({
   href_start,
   content,
   setContent,
-  data,
+  resp,
   noChildren,
 }: {
   parentName: string;
   href_start: string;
   content: SecondaryItemList;
   setContent: Dispatch<SetStateAction<SecondaryItemList>>;
-  data: AxiosResponse<any, any>;
+  resp: AxiosResponse<any, any>;
   noChildren?: boolean;
 }) => {
   const contentCopy = [...content];
   const courseIndex = contentCopy.findIndex((x) => x.name === parentName);
-  const courseMap = data.data.map(
+  const courseMap = resp.data.map(
     (x: any) =>
       ({
         name: x.title,
@@ -34,7 +34,7 @@ export const SecondayContentQueryOnSuccess = ({
             })),
       } as SecondaryItem)
   );
-  if (data.data.length == 0) {
+  if (resp.data.length == 0) {
     delete contentCopy[courseIndex].children;
   } else {
     contentCopy[courseIndex]["children"] = courseMap;

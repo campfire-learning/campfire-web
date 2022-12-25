@@ -69,13 +69,13 @@ export const SecondaryColumnCourse = () => {
   useQuery({
     queryKey: ["syllabus"],
     queryFn: () => GetCourseDetail({ userId: cachedUser.id }),
-    onSuccess: (data) => {
+    onSuccess: (resp) => {
       SecondayContentQueryOnSuccess({
         parentName: "Courses",
         href_start: `${institution}/course`,
         content,
         setContent,
-        data,
+        resp,
       });
     },
     onError: (error) => {
@@ -86,13 +86,13 @@ export const SecondaryColumnCourse = () => {
   useQuery({
     queryKey: ["clubs"],
     queryFn: () => GetCourseDetail({ courseId: cachedUser.id }),
-    onSuccess: (data) => {
+    onSuccess: (resp) => {
       SecondayContentQueryOnSuccess({
         parentName: "Clubs",
         href_start: `${institution}/club`,
         content,
         setContent,
-        data,
+        resp,
       });
     },
     onError: (error) => {
@@ -103,13 +103,13 @@ export const SecondaryColumnCourse = () => {
   useQuery({
     queryKey: ["interests"],
     queryFn: () => GetCourseDetail({ userId: cachedUser.id }),
-    onSuccess: (data) => {
+    onSuccess: (resp) => {
       SecondayContentQueryOnSuccess({
         parentName: "Interests",
         href_start: `${institution}/interest`,
         content,
         setContent,
-        data,
+        resp,
         noChildren: true,
       });
     },
@@ -123,7 +123,7 @@ export const SecondaryColumnCourse = () => {
       <div className="flex flex-1 flex-col overflow-y-auto pt-0 pb-4">
         <div className="flex flex-shrink-0 items-center px-3"></div>
         <div className="flex flex-col flex-1">
-          <p className='text-gray-300 group w-full flex items-center px-2 pt-6 pb-7 text-left text-xl font-bold rounded-xl truncate'>
+          <p className="text-gray-300 group w-full flex items-center px-2 pt-6 pb-7 text-left text-xl font-bold rounded-xl truncate">
             Course Name Here
           </p>
           <ColumnNavSection content={content} />

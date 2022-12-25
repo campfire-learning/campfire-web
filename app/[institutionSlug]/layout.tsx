@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { MobileColumnAnimation } from "components/column/mobile/MobileColumnAnimation";
 import { MobileOpenColumn } from "components/column/mobile/MobileOpenColumn";
-import { SecondaryColumn } from "components/column/secondary-column/SecondaryColumn";
+import { SecondaryColumnCourse } from "components/column/secondary-column/SecondaryColumnCourse";
 import { ProtectedRoute } from "components/routing/ProtectedRoute";
 import { PageContext } from "components/context/PageContext";
 import { PrimaryColumn } from "components/column/primary-column/PrimaryColumn";
@@ -31,7 +31,7 @@ export default function InstitutionLayout({
             columnOpen={mobileColumnOpen}
             setColumnOpen={setMobileColumnOpen}
           >
-            <SecondaryColumn />
+            <SecondaryColumnCourse />
           </MobileColumnAnimation>
 
           <div className="relative grow flex flex-col h-screen">
