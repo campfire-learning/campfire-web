@@ -4,13 +4,13 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 import {
+  ChartBarSquareIcon,
   ChatBubbleLeftRightIcon,
-  CheckIcon,
   DocumentChartBarIcon,
   DocumentCheckIcon,
   DocumentTextIcon,
   UserGroupIcon,
-} from "@heroicons/react/24/outline";
+} from "@heroicons/react/20/solid";
 import { ColumnNavSection } from "./SecondaryColumnNavSection";
 import { GetCourseDetail } from "api/course-content";
 import { useQuery } from "@tanstack/react-query";
@@ -60,7 +60,7 @@ export const SecondaryColumnCourse = () => {
     },
     {
       name: "Grades",
-      icon: CheckIcon,
+      icon: ChartBarSquareIcon,
       href: `${institution}/course/1/grades`,
       canCreate: true,
     },
