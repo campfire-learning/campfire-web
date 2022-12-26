@@ -1,4 +1,5 @@
 import { usePathname } from "next/navigation";
+import { CourseList } from "types/course";
 
 import {
   AcademicCapIcon,
@@ -13,8 +14,7 @@ import { SVGProps, useState } from "react";
 import { PrimaryColumnSection } from "./PrimaryColumnSection";
 import { PrimaryItemModal } from "./PrimaryItemModal";
 
-
-export interface PrimaryItemBase {
+interface PrimaryItemBase {
   name: string;
   icon: (
     props: SVGProps<SVGSVGElement> & {
@@ -24,17 +24,17 @@ export interface PrimaryItemBase {
   ) => JSX.Element;
 }
 
-export interface PrimaryItemType extends PrimaryItemBase {
-  href?: string;
-  modal?: ({ itemInfo }: { itemInfo: PrimaryItemBase }) => JSX.Element;
+interface PrimaryItemHref extends PrimaryItemBase {
+  href: string;
+  modal?: never;
 }
 
-export interface Course { 
-  name: string;
-  description: string;
-};
+interface PrimaryItemModal extends PrimaryItemBase {
+  href?: never;
+  modal: ({ itemInfo }: { itemInfo: PrimaryItemBase }) => JSX.Element;
+}
 
-export type CourseList = Course[];
+type PrimaryItemType = PrimaryItemHref | PrimaryItemModal;
 
 export const PrimaryColumn = () => {
   const [courses, setCourses] = useState<CourseList>([]);
