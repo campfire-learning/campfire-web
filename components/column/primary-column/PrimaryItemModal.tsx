@@ -1,31 +1,31 @@
 import { Dialog } from "@headlessui/react";
 import { ModalBaseAnimation } from "components/modal/ModalBaseAnimation";
 import { useState } from "react";
-import { PrimaryColumnContentBase } from "./PrimaryColumnContent";
+import { PrimaryItemBase } from "./PrimaryColumn";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { PrimaryContentModalContent } from "./PrimaryContentModalContent";
+import { PrimaryItemModalContent } from "./PrimaryItemModalContent";
 
-export const PrimaryContentModal = ({
-  buttonInfo,
-}: {
-  buttonInfo: PrimaryColumnContentBase;
+export const PrimaryItemModal = ({
+  itemInfo,
+} : {
+  itemInfo: PrimaryItemBase;
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {buttonInfo && (
+      {itemInfo && (
         <button
-          key={buttonInfo.name}
+          key={itemInfo.name}
           onClick={() => setOpen(true)}
           className="hover:bg-zinc-700 group w-full p-3 rounded-md flex flex-col items-center"
         >
-          <buttonInfo.icon
+          <itemInfo.icon
             className="text-gray-400 group-hover:text-gray-100 w-8"
             aria-hidden="true"
           />
           <span className="mt-2 text-xs font-medium text-gray-300 group-hover:text-white">
-            {buttonInfo.name}
+            {itemInfo.name}
           </span>
         </button>
       )}
@@ -44,19 +44,21 @@ export const PrimaryContentModal = ({
               </button>
             </div>
             <div className="ml-4 text-left"></div>
-            <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-300 display:inline">
-            <p className="flex space-x-1">
-              <div>
-              <buttonInfo.icon className="w-6"/>
-              </div>
-              <div>
-                {buttonInfo.name}
-              </div>
-            </p>
+            <Dialog.Title
+              as="h3"
+              className="text-lg font-medium leading-6 text-gray-300 display:inline"
+            >
+              <p className="flex space-x-1">
+                <div>
+                  <itemInfo.icon className="w-6" />
+                </div>
+                <div>{itemInfo.name}</div>
+              </p>
             </Dialog.Title>
-            <PrimaryContentModalContent
-            setModalState={setOpen}
-            modalType={buttonInfo.name}/>
+            <PrimaryItemModalContent
+              setModalState={setOpen}
+              modalType={itemInfo.name}
+            />
           </Dialog.Panel>
         }
         open={open}

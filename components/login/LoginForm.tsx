@@ -28,10 +28,10 @@ export const LoginForm = () => {
     onMutate: () => {
       setSignInLoading(true)
     },
-    onSuccess: (data) => {
-      localStorage.setItem('user', JSON.stringify(data.data));
+    onSuccess: (resp) => {
+      localStorage.setItem('user', JSON.stringify(resp.data));
       
-      router.push(`/${data.data.institution_slug}`);
+      router.push(`/${resp.data.institution_slug}`);
     },
     onError: () => {
       setIsError(true)

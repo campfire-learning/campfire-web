@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { PrimaryColumnContentType } from "./PrimaryColumnContent";
+import { PrimaryItemType } from "./PrimaryColumn";
 
 export const PrimaryColumnSection = ({
   content,
 }: {
-  content: PrimaryColumnContentType[];
+  content: PrimaryItemType[];
 }) => {
   return (
     <>
@@ -25,7 +25,7 @@ export const PrimaryColumnSection = ({
               </span>
             </Link>
           )}
-          {item.modal && <item.modal key={item.name}/>}
+          {item.modal && <item.modal key={item.name} itemInfo={{name: item.name, icon: item.icon}} />}
         </>
       ))}
     </>

@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { MobileColumnAnimation } from "components/column/mobile/MobileColumnAnimation";
 import { MobileOpenColumn } from "components/column/mobile/MobileOpenColumn";
-import { ColumnContent } from "components/column/secondary-column/SecondaryColumnContent";
+import { SecondaryColumnCourse } from "components/column/secondary-column/SecondaryColumnCourse";
 import { ProtectedRoute } from "components/routing/ProtectedRoute";
 import { PageContext } from "components/context/PageContext";
-import { PrimaryColumnContent } from "components/column/primary-column/PrimaryColumnContent";
+import { PrimaryColumn } from "components/column/primary-column/PrimaryColumn";
 
 export default function InstitutionLayout({
   children,
@@ -20,9 +20,9 @@ export default function InstitutionLayout({
       <PageContext>
         <div className="flex h-screen bg-zinc-900">
           {/* Desktop */}
-          <div className="flex h-screen py-2 bg-zinc-800">
-            <div className="hidden overflow-y-auto bg-zinc-800 md:block md:w28">
-              <PrimaryColumnContent />
+          <div className="flex h-screen py-2">
+            <div className="hidden overflow-y-auto md:block md:w28">
+              <PrimaryColumn />
             </div>
           </div>
 
@@ -31,7 +31,7 @@ export default function InstitutionLayout({
             columnOpen={mobileColumnOpen}
             setColumnOpen={setMobileColumnOpen}
           >
-            <ColumnContent />
+            <SecondaryColumnCourse />
           </MobileColumnAnimation>
 
           <div className="relative grow flex flex-col h-screen">

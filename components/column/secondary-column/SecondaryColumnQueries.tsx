@@ -1,43 +1,37 @@
 import { AxiosResponse } from "axios";
 import { Dispatch, SetStateAction } from "react";
-import { Content, ContentType } from "./SecondaryColumnContent";
+import { SecondaryItem, SecondaryItemList } from "./SecondaryColumn";
 
 export const SecondayContentQueryOnSuccess = ({
   parentName,
   href_start,
   content,
   setContent,
-  data,
+  resp,
   noChildren,
 }: {
   parentName: string;
   href_start: string;
-  content: ContentType;
-  setContent: Dispatch<SetStateAction<ContentType>>;
-  data: AxiosResponse<any, any>;
+  content: SecondaryItemList;
+  setContent: Dispatch<SetStateAction<SecondaryItemList>>;
+  resp: AxiosResponse<any, any>;
   noChildren?: boolean;
 }) => {
   const contentCopy = [...content];
   const courseIndex = contentCopy.findIndex((x) => x.name === parentName);
-  const courseMap = data.data.map(
-    (x: any) =>
-      ({
-        name: x.title,
-        href: `${href_start}/${x.id}`,
+  const course = resp.data
+  const courseMap = {
+        name: course.title,
+        href: `${href_start}/${course.id}`,
         level: 2,
         children: noChildren
           ? undefined
-          : x.channels.map((channel: any) => ({
+          : course.channels.map((channel: any) => ({
               name: channel.title,
               level: 3,
-              href: `${href_start}/${x.id}/channel/${channel.id}`,
+              href: `${href_start}/${course.id}/channel/${channel.id}`,
             })),
-      } as Content)
-  );
-  if (data.data.length == 0) {
-    delete contentCopy[courseIndex].children;
-  } else {
-    contentCopy[courseIndex]["children"] = courseMap;
-  }
+      } as SecondaryItem;
+
   setContent(contentCopy);
 };
