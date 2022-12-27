@@ -2,7 +2,7 @@
 
 import * as Accordion from "@radix-ui/react-accordion";
 import { styled, keyframes } from "@stitches/react";
-import { ColumnNavButton } from "./SecondaryColumnNavButton";
+import { SecondaryColumnNavButton } from "./SecondaryColumnNavButton";
 
 export const SecondaryColumnSection = ({
   atBottom,
@@ -74,7 +74,7 @@ export const SecondaryColumnSection = ({
           defaultValue={openAccordionSaved}
         >
           <Accordion.Item value={item.href}>
-            <ColumnNavButton
+            <SecondaryColumnNavButton
               item={item}
               content={parentItem}
               onClickFunction={toggleAccordionOpen}

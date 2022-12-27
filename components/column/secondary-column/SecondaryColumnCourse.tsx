@@ -28,44 +28,44 @@ export const SecondaryColumnCourse = ({
   const institution: string = currentPath.split("/")[1];
   const courseId: string = currentPath.split("/")[3];
 
-  const [itemList, setItemList] = useState<Record<string, any>>([
+  const [itemList, setItemList] = useState<Record<string, any>[]>([
     {
-      name: "channels",
+      name: "Channels",
       icon: ChatBubbleLeftRightIcon,
       href: `${institution}/course/${courseId}/channels`,
       // apiUrl: `/api/v1/channels/?courseId=${courseId}`,
       canCreate: true,
     },
     {
-      name: "syllabus",
+      name: "Syllabus",
       icon: DocumentTextIcon,
       href: `${institution}/course/${courseId}/syllabus`,
       // apiUrl: `/api/v1/courses/${courseId}`,
       canCreate: true,
     },
     {
-      name: "members",
+      name: "Members",
       icon: UserGroupIcon,
       href: `${institution}/course/${courseId}/members`,
       // apiUrl: `/api/v1/users/?courseId=${courseId}`,
       canCreate: true,
     },
     {
-      name: "assignments",
+      name: "Assignments",
       icon: DocumentChartBarIcon,
       href: `${institution}/course/${courseId}/assignments`,
       // apiUrl: `/api/v1/assignments/?courseId=${courseId}`,
       canCreate: true,
     },
     {
-      name: "exams",
+      name: "Exams",
       icon: DocumentCheckIcon,
       href: `${institution}/course/${courseId}/exams`,
       // apiUrl: `/api/v1/exams/?courseId=${courseId}`,
       canCreate: true,
     },
     {
-      name: "grades",
+      name: "Grades",
       icon: ChartBarSquareIcon,
       href: `${institution}/course/${courseId}/grades`,
       // apiUrl: `/api/v1/grades/?courseId=${courseId}&userId=${cachedUser.id}`,
@@ -75,13 +75,16 @@ export const SecondaryColumnCourse = ({
 
   // get "channels" data, which we show directly
   useQuery({
-    queryKey: ["channels", courseId],
+    queryKey: [`channels-${courseId}`],
     queryFn: async () => {
-      return axiosAuth.get(`/api/v1/channels/?courseId=${courseId}`);
+      return axiosAuth.get(`/api/v1/channels/?context_id=${courseId}&context_type=Course`);
     },
     onSuccess: (resp: any) => {
-      let tmpItemList = { ...itemList };
-      tmpItemList[0] = { ...tmpItemList[0], children: resp };
+      let tmpItemList = [...itemList];
+      const channelsData = resp.data.map((channel) => {
+        return {...channel, name: channel.title, href: `${institution}/course/${courseId}/channel/${channel.id}` };
+      });
+      tmpItemList[0] = { ...tmpItemList[0], children: channelsData };
       setItemList(tmpItemList);
     },
     onError: (error) => {
