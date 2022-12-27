@@ -1,8 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-
 import {
   ChartBarSquareIcon,
   ChatBubbleLeftRightIcon,
@@ -11,12 +8,12 @@ import {
   DocumentTextIcon,
   UserGroupIcon,
 } from "@heroicons/react/20/solid";
-import { ColumnNavSection } from "./SecondaryColumnNavSection";
-import { GetCourseDetail } from "api/course-content";
+import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { SecondayContentQueryOnSuccess } from "./SecondaryColumnQueries";
-import { SecondaryItemList } from "./SecondaryColumn";
+
+import { ColumnNavSection } from "./SecondaryColumnNavSection";
+import { axiosAuth } from "api/axios";
 
 export const SecondaryColumnCourse = () => {
   const cachedUser = JSON.parse(
@@ -24,98 +21,70 @@ export const SecondaryColumnCourse = () => {
   );
 
   const currentPath = usePathname();
-  const institution = currentPath?.split("/")[1];
+  const institution: string = currentPath.split("/")[1];
+  const courseId: string = currentPath.split("/")[3];
 
-  const [content, setContent] = useState<SecondaryItemList>([
-    {
-      name: "Syllabus",
-      icon: DocumentTextIcon,
-      // href: `${institution}/course/${courseId}/syllabus`,
-      href: `${institution}/course/1/syllabus`,
-      canCreate: true,
-    },
-    {
-      name: "Channels",
+  const [items, setItems] = useState<Record<string, any>>({
+    channels: {
       icon: ChatBubbleLeftRightIcon,
-      href: `${institution}/course/1/channels`,
+      href: `${institution}/course/${courseId}/channels`,
+      apiUrl: `/api/v1/channels/?courseId=${courseId}`,
       canCreate: true,
     },
-    {
-      name: "Members",
+    syllabus: {
+      icon: DocumentTextIcon,
+      href: `${institution}/course/${courseId}/syllabus`,
+      apiUrl: `/api/v1/courses/${courseId}`,
+      canCreate: true,
+    },
+    members: {
       icon: UserGroupIcon,
-      href: `${institution}/course/1/members`,
+      href: `${institution}/course/${courseId}/members`,
+      apiUrl: `/api/v1/users/?courseId=${courseId}`,
       canCreate: true,
     },
-    {
-      name: "Assignments",
+    assignments: {
       icon: DocumentChartBarIcon,
-      href: `${institution}/course/1/assignments`,
+      href: `${institution}/course/${courseId}/assignments`,
+      apiUrl: `/api/v1/assignments/?courseId=${courseId}`,
       canCreate: true,
     },
-    {
-      name: "Exams",
+    exams: {
       icon: DocumentCheckIcon,
-      href: `${institution}/course/1/exams`,
+      href: `${institution}/course/${courseId}/exams`,
+      apiUrl: `/api/v1/exams/?courseId=${courseId}`,
       canCreate: true,
     },
-    {
-      name: "Grades",
+    grades: {
       icon: ChartBarSquareIcon,
-      href: `${institution}/course/1/grades`,
+      href: `${institution}/course/${courseId}/grades`,
+      apiUrl: `/api/v1/grades/?courseId=${courseId}&userId=${cachedUser.id}`,
       canCreate: true,
     },
-  ]);
-
-  useQuery({
-    queryKey: ["syllabus"],
-    queryFn: () => GetCourseDetail({ userId: cachedUser.id }),
-    onSuccess: (resp) => {
-      SecondayContentQueryOnSuccess({
-        parentName: "Courses",
-        href_start: `${institution}/course`,
-        content,
-        setContent,
-        resp,
-      });
-    },
-    onError: (error) => {
-      console.log(error);
-    },
   });
 
-  useQuery({
-    queryKey: ["clubs"],
-    queryFn: () => GetCourseDetail({ courseId: cachedUser.id }),
-    onSuccess: (resp) => {
-      SecondayContentQueryOnSuccess({
-        parentName: "Clubs",
-        href_start: `${institution}/club`,
-        content,
-        setContent,
-        resp,
-      });
-    },
-    onError: (error) => {
-      console.log(error);
-    },
+  // We use "itemList" to do loop through the content of "items" because it'd
+  // be a bad idea to iterate through "items" and also modify it in each loop
+  const itemList = Array<Record<string, any>>();
+  Object.entries(items).forEach(([key, value]) => {
+    itemList.push({ ...value, name: key });
   });
 
-  useQuery({
-    queryKey: ["interests"],
-    queryFn: () => GetCourseDetail({ userId: cachedUser.id }),
-    onSuccess: (resp) => {
-      SecondayContentQueryOnSuccess({
-        parentName: "Interests",
-        href_start: `${institution}/interest`,
-        content,
-        setContent,
-        resp,
-        noChildren: true,
-      });
-    },
-    onError: (error) => {
-      console.log(error);
-    },
+  itemList.forEach((item) => {
+    useQuery({
+      queryKey: [item.name],
+      queryFn: async () => {
+        return axiosAuth.get(item.apiUrl);
+      },
+      onSuccess: (resp: any) => {
+        let tmpItems = { ...items };
+        tmpItems[item.name] = { ...tmpItems[item.name], data: resp };
+        setItems(tmpItems);
+      },
+      onError: (error) => {
+        console.error(error);
+      },
+    });
   });
 
   return (

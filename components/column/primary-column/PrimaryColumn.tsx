@@ -34,7 +34,7 @@ interface PrimaryItemModal extends PrimaryItemBase {
   modal: ({ itemInfo }: { itemInfo: PrimaryItemBase }) => JSX.Element;
 }
 
-type PrimaryItemType = PrimaryItemHref | PrimaryItemModal;
+export type PrimaryItemType = PrimaryItemHref | PrimaryItemModal;
 
 export const PrimaryColumn = () => {
   const [courses, setCourses] = useState<CourseList>([]);

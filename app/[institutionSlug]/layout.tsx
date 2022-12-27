@@ -20,8 +20,8 @@ export default function InstitutionLayout({
       <PageContext>
         <div className="flex h-screen bg-zinc-900">
           {/* Desktop */}
-          <div className="flex h-screen py-2 bg-zinc-900">
-            <div className="hidden overflow-y-auto bg-zinc-900 md:block md:w28">
+          <div className="flex h-screen py-2">
+            <div className="hidden overflow-y-auto md:block md:w28">
               <PrimaryColumn />
             </div>
           </div>

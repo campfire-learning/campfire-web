@@ -25,7 +25,7 @@ export const PrimaryColumnSection = ({
               </span>
             </Link>
           )}
-          {item.modal && <item.modal key={item.name} />}
+          {item.modal && <item.modal key={item.name} itemInfo={{name: item.name, icon: item.icon}} />}
         </>
       ))}
     </>
