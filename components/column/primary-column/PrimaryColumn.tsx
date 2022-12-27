@@ -12,9 +12,9 @@ import { CampfireLogo } from "components/assets/CampfireLogo";
 import { BottomBar } from "../bottom-bar/BottomBar";
 import { SVGProps, useState } from "react";
 import { PrimaryColumnSection } from "./PrimaryColumnSection";
-import { PrimaryItemModal } from "./PrimaryItemModal";
+import { PrimaryItemModal } from "./PrimaryColumnItemModal";
 
-interface PrimaryItemBase {
+export interface PrimaryItemBase {
   name: string;
   icon: (
     props: SVGProps<SVGSVGElement> & {
