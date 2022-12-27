@@ -8,7 +8,7 @@ import {
   TrophyIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
-import { ColumnNavSection } from "./SecondaryColumnNavSection";
+import { SecondaryColumnSection } from "./SecondaryColumnSection";
 import { GetClubs, GetCourses, GetInterests } from "api/primary-content";
 import { useQuery } from "@tanstack/react-query";
 import { SVGProps, useState } from "react";
@@ -126,7 +126,7 @@ export const SecondayContent = () => {
           <p className="text-gray-300 group w-full flex items-center px-2 pt-6 pb-7 text-left text-xl font-bold rounded-xl truncate">
             Course Name Here
           </p>
-          <ColumnNavSection content={content} />
+          <SecondaryColumnSection itemList={content} />
         </div>
       </div>
     </div>

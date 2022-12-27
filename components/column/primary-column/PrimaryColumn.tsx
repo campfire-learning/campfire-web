@@ -40,7 +40,7 @@ export const PrimaryColumn = () => {
   const [courses, setCourses] = useState<CourseList>([]);
 
   const currentPath = usePathname();
-  const institution = currentPath?.split("/")[1];
+  const institution = currentPath.split("/")[1];
 
   const sectionMain: PrimaryItemType[] = [
     {
