@@ -27,7 +27,17 @@ export interface PrimaryItemBase {
 interface PrimaryItemHref extends PrimaryItemBase {
   href: string;
   modal?: never;
+interface PrimryItemHref extends PrimaryItemBase {
+  href: string;
+  modal?: never;
 }
+
+interface PrimaryItemModal extends PrimaryItemBase {
+  href?: never;
+  modal: ({ buttonInfo }: { buttonInfo: PrimaryItemBase }) => JSX.Element;
+}
+
+export type PrimaryItemType = PrimryItemHref | PrimaryItemModal
 
 interface PrimaryItemModal extends PrimaryItemBase {
   href?: never;
