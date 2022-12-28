@@ -9,10 +9,9 @@ export const PrimaryColumnSection = ({
   return (
     <>
       {content.map((item) => (
-        <>
+        <div key={item.name}>
           {item.href && (
             <Link
-              key={item.name}
               href={item.href}
               className="hover:bg-zinc-700 group w-full p-3 rounded-md flex flex-col items-center"
             >
@@ -26,7 +25,7 @@ export const PrimaryColumnSection = ({
             </Link>
           )}
           {item.modal && <item.modal key={item.name} itemInfo={{name: item.name, icon: item.icon}} />}
-        </>
+        </div>
       ))}
     </>
   );
