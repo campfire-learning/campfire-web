@@ -1,12 +1,7 @@
 "use client";
 
 import {
-  ChartBarSquareIcon,
   ChatBubbleLeftRightIcon,
-  DocumentChartBarIcon,
-  DocumentCheckIcon,
-  DocumentTextIcon,
-  UserGroupIcon,
 } from "@heroicons/react/20/solid";
 import { axiosAuth } from "api/axios";
 import { SecondaryColumn } from "components/column/secondary-column/SecondaryColumn";
@@ -26,7 +21,6 @@ export default function ClubIdLayout({
 
   const [itemList, setItemList] = useState<Record<string, any>[]>([]);
 
-  // get "channels" data, which we show directly
   useQuery({
     queryKey: [`club-channels-${clubId}`],
     queryFn: async () => {
