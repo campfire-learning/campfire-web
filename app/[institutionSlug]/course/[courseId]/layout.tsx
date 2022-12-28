@@ -70,7 +70,7 @@ export default function CourseIdLayout({
 
   // get "channels" data, which we show directly
   useQuery({
-    queryKey: [`channels-${courseId}`],
+    queryKey: [`course-channels-${courseId}`],
     queryFn: async () => {
       return axiosAuth.get(
         `/api/v1/channels/?context_id=${courseId}&context_type=Course`
