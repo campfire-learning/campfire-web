@@ -1,18 +1,17 @@
 import Link from "next/link";
-import { PrimaryColumnContentType } from "./PrimaryColumnContent";
+import { PrimaryItemType } from "./PrimaryColumn";
 
 export const PrimaryColumnSection = ({
   content,
 }: {
-  content: PrimaryColumnContentType[];
+  content: PrimaryItemType[];
 }) => {
   return (
     <>
       {content.map((item) => (
-        <>
+        <div key={item.name}>
           {item.href && (
             <Link
-              key={item.name}
               href={item.href}
               className="hover:bg-zinc-700 group w-full p-3 rounded-md flex flex-col items-center"
             >
@@ -25,9 +24,8 @@ export const PrimaryColumnSection = ({
               </span>
             </Link>
           )}
-          {console.log(`pre-modal ${item.name}`)}
-          {item.modal && <item.modal />}
-        </>
+          {item.modal && <item.modal key={item.name} itemInfo={{name: item.name, icon: item.icon}} />}
+        </div>
       ))}
     </>
   );
