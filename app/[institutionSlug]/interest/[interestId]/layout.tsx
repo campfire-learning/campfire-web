@@ -1,13 +1,10 @@
 "use client";
 
-import {
-  ChatBubbleLeftRightIcon,
-} from "@heroicons/react/20/solid";
 import { axiosAuth } from "api/axios";
-import { SecondaryColumn } from "components/column/secondary-column/SecondaryColumn";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CurrentInterestContext } from "components/context/InterestContext";
 
 export default function InteretIdLayout({
   children,
@@ -18,13 +15,21 @@ export default function InteretIdLayout({
   const currentPath = usePathname();
   const interestId: string = currentPath.split("/")[3];
 
-  useQuery(
-    ["interest", interestId],
-    async () => {
-      const resp = await axiosAuth.get(`/api/v1/interests/${interestId}`);
-      setInterestTitle(resp.data.title);
+  const { currentInterest, setCurrentInterest } =
+  useContext(CurrentInterestContext);
+
+  useQuery({
+    queryKey: ["interest", interestId],
+    queryFn: async () => {
+      return axiosAuth.get(`/api/v1/interests/${interestId}`);
     },
-  );
+    onSuccess: (resp: any) => {
+      setCurrentInterest?.(resp.data);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
   return (
     <div className="flex h-screen">

@@ -48,12 +48,12 @@ export const PrimaryItemModal = ({
               as="h3"
               className="text-lg font-medium leading-6 text-gray-300 display:inline"
             >
-              <p className="flex space-x-1">
+              <span className="flex space-x-1">
                 <div>
                   <itemInfo.icon className="w-6" />
                 </div>
                 <div>{itemInfo.name}</div>
-              </p>
+              </span>
             </Dialog.Title>
             <PrimaryItemModalContent
               setModalState={setOpen}

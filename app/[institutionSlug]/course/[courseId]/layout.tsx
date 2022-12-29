@@ -96,16 +96,24 @@ export default function CourseIdLayout({
   const { currentCourse, setCurrentCourse } =
   useContext(CurrentCourseContext);
 
-  useQuery(["course", courseId], async () => {
-    const resp = await axiosAuth.get(`/api/v1/courses/${courseId}`);
-    setCurrentCourse?.(resp.data);
+  useQuery({
+    queryKey: ["course", courseId],
+    queryFn: async () => {
+      return axiosAuth.get(`/api/v1/courses/${courseId}`);
+    },
+    onSuccess: (resp: any) => {
+      setCurrentCourse?.(resp.data);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
   });
 
   return (
     <div className="flex h-screen">
       {/* Desktop */}
       <div className="flex h-screen py-2 bg-zinc-800">
-        <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-l border-zinc-700 px-2">
+        <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-x border-zinc-700 px-2">
           <SecondaryColumn title={typeof currentCourse.title === 'string' ? currentCourse.title : ''} itemList={itemList} />
         </div>
       </div>

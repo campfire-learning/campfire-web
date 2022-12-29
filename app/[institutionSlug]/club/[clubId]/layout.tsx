@@ -7,7 +7,8 @@ import { axiosAuth } from "api/axios";
 import { SecondaryColumn } from "components/column/secondary-column/SecondaryColumn";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CurrentClubContext } from "components/context/ClubContext";
 
 export default function ClubIdLayout({
   children,
@@ -44,20 +45,28 @@ export default function ClubIdLayout({
     },
   });
 
-  useQuery(
-    ["club", clubId],
-    async () => {
-      const resp = await axiosAuth.get(`/api/v1/clubs/${clubId}`);
-      setClubTitle(resp.data.title);
+  const { currentClub, setCurrentClub } =
+  useContext(CurrentClubContext);
+
+  useQuery({
+    queryKey: ["club", clubId],
+    queryFn: async () => {
+      return axiosAuth.get(`/api/v1/clubs/${clubId}`);
     },
-  );
+    onSuccess: (resp: any) => {
+      setCurrentClub?.(resp.data)
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
   return (
     <div className="flex h-screen">
       {/* Desktop */}
       <div className="flex h-screen py-2 bg-zinc-800">
-        <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-l border-zinc-700 px-2">
-          <SecondaryColumn title={clubTitle} itemList={itemList} />
+        <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-x border-zinc-700 px-2">
+          <SecondaryColumn title={typeof currentClub.title === 'string' ? currentClub.title : ''} itemList={itemList} />
         </div>
       </div>
 
