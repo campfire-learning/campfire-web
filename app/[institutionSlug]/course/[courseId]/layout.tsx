@@ -107,7 +107,7 @@ export default function CourseIdLayout({
         </div>
       </div>
 
-      <div className="relative grow flex flex-col h-screen">
+      <div className="relative grow flex flex-col h-screen px-10">
         <div className="flex-auto">{children}</div>
       </div>
     </div>

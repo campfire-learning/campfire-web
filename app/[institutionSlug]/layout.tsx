@@ -26,14 +26,6 @@ export default function InstitutionLayout({
             </div>
           </div>
 
-          {/* Mobile */}
-          <MobileColumnAnimation
-            columnOpen={mobileColumnOpen}
-            setColumnOpen={setMobileColumnOpen}
-          >
-            <SecondaryColumn />
-          </MobileColumnAnimation>
-
           <div className="relative grow flex flex-col h-screen">
             <MobileOpenColumn setColumnOpen={setMobileColumnOpen} />
             <div className="flex-auto">{children}</div>

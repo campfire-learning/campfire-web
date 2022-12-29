@@ -57,7 +57,7 @@ export default function SyllabusEdit(props: any) {
     };
 
     return (
-        <button onClick={enableEdit}>
+        <button className="mt-2 text-lg font-large text-gray-300 group-hover:text-white" onClick={enableEdit}>
           Edit
         </button>
     );
@@ -89,10 +89,10 @@ export default function SyllabusEdit(props: any) {
   
     return (
       <div className="flex justify-end">
-        <button className="mr-2" onClick={handleCancel}>
+        <button className="mt-2 text-lg font-bold text-gray-300 group-hover:text-blue right-10" onClick={handleCancel}>
           Cancel
         </button>
-        <button onClick={handleSave}>
+        <button className="mt-2 text-lg font-bold text-gray-300 group-hover:text-blue left-10" onClick={handleSave}>
           Save
         </button>
       </div>
