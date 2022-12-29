@@ -3,10 +3,9 @@
 import { useState } from "react";
 import { MobileColumnAnimation } from "components/column/mobile/MobileColumnAnimation";
 import { MobileOpenColumn } from "components/column/mobile/MobileOpenColumn";
-import { SecondaryColumn } from "components/column/secondary-column/SecondaryColumn";
 import { ProtectedRoute } from "components/routing/ProtectedRoute";
-import { PageContext } from "components/context/PageContext";
 import { PrimaryColumn } from "components/column/primary-column/PrimaryColumn";
+import { AppContext } from "components/context/AppContext";
 
 export default function InstitutionLayout({
   children,
@@ -17,7 +16,7 @@ export default function InstitutionLayout({
 
   return (
     <ProtectedRoute>
-      <PageContext>
+      <AppContext>
         <div className="flex h-screen bg-zinc-900">
           {/* Desktop */}
           <div className="flex h-screen py-2">
@@ -31,7 +30,7 @@ export default function InstitutionLayout({
             columnOpen={mobileColumnOpen}
             setColumnOpen={setMobileColumnOpen}
           >
-            <SecondaryColumn />
+            <PrimaryColumn />
           </MobileColumnAnimation>
 
           <div className="relative grow flex flex-col h-screen">
@@ -39,7 +38,7 @@ export default function InstitutionLayout({
             <div className="flex-auto">{children}</div>
           </div>
         </div>
-      </PageContext>
+      </AppContext>
     </ProtectedRoute>
   );
 }

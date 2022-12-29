@@ -1,6 +1,6 @@
 'use client'
 
-import { ChannelLevelTitle } from "components/title/ChanelLevelTitle"
+import { ChannelLevelTitle } from "components/title/ChannelLevelTitle"
 
 export const TabBar = (
   {

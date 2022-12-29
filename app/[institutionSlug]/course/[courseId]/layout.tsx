@@ -12,14 +12,14 @@ import { axiosAuth } from "api/axios";
 import { SecondaryColumn } from "components/column/secondary-column/SecondaryColumn";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CurrentCourseContext } from "components/context/CourseContext";
 
 export default function CourseIdLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [courseTitle, setCourseTitle] = useState("");
   const currentPath = usePathname();
   const institution: string = currentPath.split("/")[1];
   const courseId: string = currentPath.split("/")[3];
@@ -78,7 +78,7 @@ export default function CourseIdLayout({
     },
     onSuccess: (resp: any) => {
       let tmpItemList = [...itemList];
-      const channelsData = resp.data.map((channel) => {
+      const channelsData = resp.data.map((channel: { title: any; id: any; }) => {
         return {
           ...channel,
           name: channel.title,
@@ -93,9 +93,12 @@ export default function CourseIdLayout({
     },
   });
 
+  const { currentCourse, setCurrentCourse } =
+  useContext(CurrentCourseContext);
+
   useQuery(["course", courseId], async () => {
     const resp = await axiosAuth.get(`/api/v1/courses/${courseId}`);
-    setCourseTitle(resp.data.title);
+    setCurrentCourse?.(resp.data);
   });
 
   return (
@@ -103,7 +106,7 @@ export default function CourseIdLayout({
       {/* Desktop */}
       <div className="flex h-screen py-2 bg-zinc-800">
         <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-l border-zinc-700 px-2">
-          <SecondaryColumn title={courseTitle} itemList={itemList} />
+          <SecondaryColumn title={typeof currentCourse.title === 'string' ? currentCourse.title : ''} itemList={itemList} />
         </div>
       </div>
 

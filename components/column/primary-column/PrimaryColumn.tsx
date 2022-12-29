@@ -24,27 +24,17 @@ export interface PrimaryItemBase {
   ) => JSX.Element;
 }
 
-interface PrimaryItemHref extends PrimaryItemBase {
-  href: string;
-  modal?: never;
-interface PrimryItemHref extends PrimaryItemBase {
+interface IPrimryItemHref extends PrimaryItemBase {
   href: string;
   modal?: never;
 }
 
-interface PrimaryItemModal extends PrimaryItemBase {
-  href?: never;
-  modal: ({ buttonInfo }: { buttonInfo: PrimaryItemBase }) => JSX.Element;
-}
-
-export type PrimaryItemType = PrimryItemHref | PrimaryItemModal
-
-interface PrimaryItemModal extends PrimaryItemBase {
+interface IPrimaryItemModal extends PrimaryItemBase {
   href?: never;
   modal: ({ itemInfo }: { itemInfo: PrimaryItemBase }) => JSX.Element;
 }
 
-export type PrimaryItemType = PrimaryItemHref | PrimaryItemModal;
+export type PrimaryItemType = IPrimryItemHref | IPrimaryItemModal;
 
 export const PrimaryColumn = () => {
   const [courses, setCourses] = useState<CourseList>([]);

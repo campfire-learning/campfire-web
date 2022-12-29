@@ -29,7 +29,7 @@ export default function ClubIdLayout({
       );
     },
     onSuccess: (resp: any) => {
-      const channelsData = resp.data.map((channel) => {
+      const channelsData = resp.data.map((channel: { title: any; id: any; }) => {
         return {
           name: channel.title,
           icon: ChatBubbleLeftRightIcon,

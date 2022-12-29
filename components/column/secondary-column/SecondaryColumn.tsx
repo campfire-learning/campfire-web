@@ -1,19 +1,4 @@
-"use client";
-
-import {
-  ChartBarSquareIcon,
-  ChatBubbleLeftRightIcon,
-  DocumentChartBarIcon,
-  DocumentCheckIcon,
-  DocumentTextIcon,
-  UserGroupIcon,
-} from "@heroicons/react/20/solid";
-import { usePathname } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-
 import { SecondaryColumnSection } from "./SecondaryColumnSection";
-import { axiosAuth } from "api/axios";
 
 export const SecondaryColumn = ({
   title,
@@ -22,13 +7,6 @@ export const SecondaryColumn = ({
   title: string;
   itemList: Record<string, any>[];
 }) => {
-  const cachedUser = JSON.parse(
-    (typeof window !== "undefined" && localStorage.getItem("user")) || "null"
-  );
-
-  const currentPath = usePathname();
-  const institution: string = currentPath.split("/")[1];
-
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       <div className="flex flex-1 flex-col overflow-y-auto pt-0 pb-4">

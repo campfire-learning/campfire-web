@@ -1,4 +1,7 @@
+'use client'
+
 import { startCase } from 'lodash';
+import { useEffect, useState } from 'react';
 
 export const BottomBar = ({
   isMini,
@@ -6,10 +9,17 @@ export const BottomBar = ({
   isMini?: boolean,
 }) => {
   const localStorageExists = (typeof window !== 'undefined')
+  
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [role, setRole] = useState<string | boolean>('');
 
-  const firstName = localStorageExists && JSON.parse(localStorage.getItem('user') || 'null')?.first_name
-  const lastName = localStorageExists && JSON.parse(localStorage.getItem('user') || 'null')?.last_name
-  const role = localStorageExists && startCase(JSON.parse(localStorage.getItem('user') || 'null')?.user_type)
+  useEffect(() => {
+    setFirstName(localStorageExists && JSON.parse(localStorage.getItem('user') || 'null')?.first_name);
+    setLastName(localStorageExists && JSON.parse(localStorage.getItem('user') || 'null')?.last_name);
+    setRole(localStorageExists && startCase(JSON.parse(localStorage.getItem('user') || 'null')?.user_type));
+  }, [])
+  
 
   return (
     <div className="flex flex-shrink-0 border-t border-zinc-700 px-4 pt-4 pb-2">

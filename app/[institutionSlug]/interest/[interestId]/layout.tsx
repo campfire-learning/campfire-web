@@ -16,34 +16,7 @@ export default function InteretIdLayout({
 }) {
   const [interestTitle, setInterestTitle] = useState("");
   const currentPath = usePathname();
-  const institution: string = currentPath.split("/")[1];
   const interestId: string = currentPath.split("/")[3];
-
-  const [itemList, setItemList] = useState<Record<string, any>[]>([]);
-
-  useQuery({
-    queryKey: [`interest-channels-${interestId}`],
-    queryFn: async () => {
-      return axiosAuth.get(
-        `/api/v1/channels/?context_id=${interestId}&context_type=Interest`
-      );
-    },
-    onSuccess: (resp: any) => {
-      console.log(resp)
-      const channelsData = resp.data.map((channel) => {
-        return {
-          name: channel.title,
-          icon: ChatBubbleLeftRightIcon,
-          href: `${institution}/interest/${interestId}/channel/${channel.id}`,
-          canCreate: true,
-        };
-      });
-      setItemList(channelsData);
-    },
-    onError: (error) => {
-      console.error(error);
-    },
-  });
 
   useQuery(
     ["interest", interestId],
@@ -55,13 +28,6 @@ export default function InteretIdLayout({
 
   return (
     <div className="flex h-screen">
-      {/* Desktop */}
-      <div className="flex h-screen py-2 bg-zinc-800">
-        <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-l border-zinc-700 px-2">
-          <SecondaryColumn title={interestTitle} itemList={itemList} />
-        </div>
-      </div>
-
       <div className="relative grow flex flex-col h-screen">
         <div className="flex-auto">{children}</div>
       </div>
