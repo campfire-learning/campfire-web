@@ -1,15 +1,24 @@
 'use client'
 
 import { ChatPage } from "components/chat/ChatPage";
-import { GroupLevelTitle } from "components/title/GroupLevelTitle";
+import { CurrentInterestContext } from "components/context/InterestContext";
+import { PageTitle } from "components/title/PageTitle";
 import { Underline } from "components/title/Underline";
+import { useContext } from "react";
 
 export default function InterestePage() {
+
+  const { currentInterest, setCurrentInterest } = useContext(CurrentInterestContext);
+
+  
   return (
     <>
-      <GroupLevelTitle/>
+      <PageTitle 
+      titleArgs={{
+        titles: [typeof currentInterest.title === 'string' ? currentInterest.title : '']
+        }}/>
       <Underline/>
-      <ChatPage/>
+      <ChatPage title={typeof currentInterest.title === 'string' ? currentInterest.title : ''}/>
     </>
   )
 }

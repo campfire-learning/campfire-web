@@ -1,11 +1,26 @@
+import { SVGProps } from "react";
 import { SecondaryColumnSection } from "./SecondaryColumnSection";
+
+export interface SecondaryItem {
+  name: string;
+  icon?: (
+    props: SVGProps<SVGSVGElement> & {
+      title?: string | undefined;
+      titleId?: string | undefined;
+    }
+  ) => JSX.Element;
+  href: string;
+  level?: number;
+  canCreate?: boolean;
+  children?: SecondaryItem[];
+}
 
 export const SecondaryColumn = ({
   title,
   itemList,
 }: {
   title: string;
-  itemList: Record<string, any>[];
+  itemList: SecondaryItem[];
 }) => {
   return (
     <div className="flex min-h-0 flex-1 flex-col">

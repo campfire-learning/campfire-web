@@ -6,10 +6,11 @@ import {
   DocumentChartBarIcon,
   DocumentCheckIcon,
   DocumentTextIcon,
+  HashtagIcon,
   UserGroupIcon,
 } from "@heroicons/react/20/solid";
 import { axiosAuth } from "api/axios";
-import { SecondaryColumn } from "components/column/secondary-column/SecondaryColumn";
+import { SecondaryColumn, SecondaryItem } from "components/column/secondary-column/SecondaryColumn";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
@@ -24,7 +25,7 @@ export default function CourseIdLayout({
   const institution: string = currentPath.split("/")[1];
   const courseId: string = currentPath.split("/")[3];
 
-  const [itemList, setItemList] = useState<Record<string, any>[]>([
+  const [itemList, setItemList] = useState<SecondaryItem[]>([
     {
       name: "Channels",
       icon: ChatBubbleLeftRightIcon,
@@ -82,6 +83,7 @@ export default function CourseIdLayout({
         return {
           ...channel,
           name: channel.title,
+          // icon: HashtagIcon,
           href: `${institution}/course/${courseId}/channel/${channel.id}`,
         };
       });
@@ -93,8 +95,7 @@ export default function CourseIdLayout({
     },
   });
 
-  const { currentCourse, setCurrentCourse } =
-  useContext(CurrentCourseContext);
+  const { currentCourse, setCurrentCourse } = useContext(CurrentCourseContext);
 
   useQuery({
     queryKey: ["course", courseId],

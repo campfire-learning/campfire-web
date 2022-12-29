@@ -4,7 +4,7 @@ import {
   ChatBubbleLeftRightIcon,
 } from "@heroicons/react/20/solid";
 import { axiosAuth } from "api/axios";
-import { SecondaryColumn } from "components/column/secondary-column/SecondaryColumn";
+import { SecondaryColumn, SecondaryItem } from "components/column/secondary-column/SecondaryColumn";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
@@ -15,12 +15,11 @@ export default function ClubIdLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [clubTitle, setClubTitle] = useState("");
   const currentPath = usePathname();
   const institution: string = currentPath.split("/")[1];
   const clubId: string = currentPath.split("/")[3];
 
-  const [itemList, setItemList] = useState<Record<string, any>[]>([]);
+  const [itemList, setItemList] = useState<SecondaryItem[]>([]);
 
   useQuery({
     queryKey: [`club-channels-${clubId}`],
@@ -45,8 +44,7 @@ export default function ClubIdLayout({
     },
   });
 
-  const { currentClub, setCurrentClub } =
-  useContext(CurrentClubContext);
+  const { currentClub, setCurrentClub } = useContext(CurrentClubContext);
 
   useQuery({
     queryKey: ["club", clubId],

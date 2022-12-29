@@ -15,8 +15,7 @@ export default function InteretIdLayout({
   const currentPath = usePathname();
   const interestId: string = currentPath.split("/")[3];
 
-  const { currentInterest, setCurrentInterest } =
-  useContext(CurrentInterestContext);
+  const { currentInterest, setCurrentInterest } = useContext(CurrentInterestContext);
 
   useQuery({
     queryKey: ["interest", interestId],

@@ -1,6 +1,6 @@
 'use client'
 
-import { ChannelLevelTitle } from "components/title/ChannelLevelTitle"
+import { PageTitle } from "components/title/PageTitle"
 
 export const TabBar = (
   {
@@ -11,7 +11,9 @@ export const TabBar = (
 
   return (
   <>
-    <ChannelLevelTitle/>
+    <PageTitle titleArgs={{
+      titles: ['']
+    }}/>
 
    {/* Mobile */}
     <div className="sm:hidden px-3 pt-2">

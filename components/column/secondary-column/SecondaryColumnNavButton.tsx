@@ -26,10 +26,8 @@ export const SecondaryColumnNavButton = ({
     [`${AccordionTrigger}[data-state=open] &`]: { transform: "rotate(90deg)" },
   });
 
-  const { selectedChannelLevel, setSelectedChannelLevel } =
-    useContext(SelectedChannelLevel);
-  const { selectedGroupLevel, setSelectedGroupLevel } =
-    useContext(SelectedGroupLevel);
+  const { selectedChannelLevel, setSelectedChannelLevel } = useContext(SelectedChannelLevel);
+  const { selectedGroupLevel, setSelectedGroupLevel } = useContext(SelectedGroupLevel);
 
   const setChannelAndGroup = () => {
     setSelectedChannelLevel?.(item);
