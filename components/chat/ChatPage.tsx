@@ -3,11 +3,7 @@ import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from '@heroicons/react/20/sol
 import { SelectedChannelLevel, SelectedGroupLevel } from 'components/context/PageContext'
 import { useContext } from 'react'
 
-export const ChatPage = () => {
-
-  const { selectedChannelLevel } = useContext(SelectedChannelLevel);
-  const { selectedGroupLevel } = useContext(SelectedGroupLevel);
-  
+export const ChatPage = ({title} : { title: string}) => {
   return (
     <form className='sm:px-6 md:px-5'>
       <Tab.Group>
@@ -57,7 +53,7 @@ export const ChatPage = () => {
                     name="comment"
                     id="comment"
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-white sm:text-sm"
-                    placeholder={`Message #${selectedChannelLevel.name ?? selectedGroupLevel.name}`}
+                    placeholder={`Message #${title}`}
                     defaultValue={''}
                   />
                 </div>

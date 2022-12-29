@@ -1,12 +1,14 @@
 'use client'
 
-import { GroupLevelTitle } from "components/title/GroupLevelTitle"
+import { PageTitle } from "components/title/PageTitle"
 import { Underline } from "components/title/Underline"
 
 export const FindNew = () => {
   return (
     <>
-      <GroupLevelTitle/>
+      <PageTitle titleArgs={{
+        titles: ["Find New"]
+      }}/>
       <Underline/>
     </>
   )
