@@ -17,7 +17,7 @@ const PrimaryItemModalContentListStyle = ({
 }) => {
   return (
     <div className="pt-5">
-      <div className="overflow-y-scroll max-h-[70vh] bg-gray-800 outline outline-gray-400 rounded-md">
+      <div className="overflow-y-auto max-h-[70vh] bg-gray-800 outline outline-gray-400 rounded-md">
         <ul role="list" className="divide-y divide-gray-400">
           {list &&
             list.map((listItem) => (
@@ -28,32 +28,32 @@ const PrimaryItemModalContentListStyle = ({
                 >
                   <div className="px-4 py-4">
                     <div className="flex items-center justify-between">
-                      <p className="truncate text-sm font-medium text-gray-300">
+                      <span className="truncate text-sm font-medium text-gray-300">
                         {listItem.title}
-                      </p>
-                      <p className="flex items-center text-sm text-gray-400">
+                      </span>
+                      <span className="flex items-center text-sm text-gray-400">
                         {listItem.department ?? "-"} {listItem.code ?? "-"}
-                      </p>
+                      </span>
                     </div>
                     <div className="mt-2 flex justify-between">
                       <>
-                        <p className="flex items-center text-sm text-gray-400">
+                        <span className="flex items-center text-sm text-gray-400">
                           <CalendarIcon
                             className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                             aria-hidden="true"
                           />
                           {_.capitalize(listItem.term ?? "-")}{" "}
                           {listItem.year ?? "-"}
-                        </p>
+                        </span>
                       </>
                       <>
-                        <p className="flex items-center text-sm text-gray-400">
+                        <span className="flex items-center text-sm text-gray-400">
                           <UsersIcon
                             className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                             aria-hidden="true"
                           />
-                          <p># of members</p>
-                        </p>
+                          <span># of members</span>
+                        </span>
                       </>
                     </div>
                   </div>

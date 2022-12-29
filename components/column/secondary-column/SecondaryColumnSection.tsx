@@ -2,6 +2,7 @@
 
 import * as Accordion from "@radix-ui/react-accordion";
 import { styled, keyframes } from "@stitches/react";
+import { SecondaryItem } from "./SecondaryColumn";
 import { SecondaryColumnNavButton } from "./SecondaryColumnNavButton";
 
 export const SecondaryColumnSection = ({
@@ -12,7 +13,7 @@ export const SecondaryColumnSection = ({
 }: {
   atBottom?: boolean;
   spaceTop?: boolean;
-  itemList: Array<any>;
+  itemList: SecondaryItem[];
   parentItem?: any;
 }) => {
   const openAnimHelp = keyframes({
@@ -80,7 +81,7 @@ export const SecondaryColumnSection = ({
               onClickFunction={toggleAccordionOpen}
             />
 
-            {item.children?.length > 0 && (
+            {item.children && item.children?.length > 0 && (
               <AccordionContent>
                 <SecondaryColumnSection
                   itemList={item.children}
