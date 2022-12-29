@@ -12,7 +12,7 @@ const defaultCurrentChannel = {
 export const CurrentChannelContext = createContext<IChannelContext>(defaultCurrentChannel);
 
 
-export const ChannelContext = ({ children } : {children: React.ReactNode}) => {
+export const ChannelContextContainer = ({ children } : {children: React.ReactNode}) => {
   const [currentChannel, setCurrentChannel] = useState<Record<string, unknown>>({});
 
   return (
