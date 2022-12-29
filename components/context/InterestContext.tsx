@@ -12,7 +12,7 @@ const defaultCurrentInterest = {
 export const CurrentInterestContext = createContext<IInterestContext>(defaultCurrentInterest);
 
 
-export const InterestContext = ({ children } : {children: React.ReactNode}) => {
+export const InterestContextContainer = ({ children } : {children: React.ReactNode}) => {
   const [currentInterest, setCurrentInterest] = useState<Record<string, unknown>>({});
 
   return (

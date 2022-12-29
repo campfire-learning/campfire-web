@@ -12,7 +12,7 @@ const defaultCurrentCourse = {
 export const CurrentCourseContext = createContext<ICourseContext>(defaultCurrentCourse);
 
 
-export const CourseContext = ({ children } : {children: React.ReactNode}) => {
+export const CourseContextContainer = ({ children } : {children: React.ReactNode}) => {
   const [currentCourse, setCurrentCourse] = useState<Record<string, unknown>>({});
 
   return (

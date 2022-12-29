@@ -12,7 +12,7 @@ const defaultCurrentClub = {
 export const CurrentClubContext = createContext<IClubContext>(defaultCurrentClub);
 
 
-export const ClubContext = ({ children } : {children: React.ReactNode}) => {
+export const ClubContextContainer = ({ children } : {children: React.ReactNode}) => {
   const [currentClub, setCurrentClub] = useState<Record<string, unknown>>({});
 
   return (

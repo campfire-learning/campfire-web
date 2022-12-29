@@ -1,19 +1,19 @@
-import { ChannelContext } from "./ChannelContext"
-import { ClubContext } from "./ClubContext"
-import { CourseContext } from "./CourseContext"
-import { InterestContext } from "./InterestContext"
+import { ChannelContextContainer } from "./ChannelContext"
+import { ClubContextContainer } from "./ClubContext"
+import { CourseContextContainer } from "./CourseContext"
+import { InterestContextContainer } from "./InterestContext"
 
 export const AppContext = ({ children } : {children: React.ReactNode}) => {
 
   return (
-    <CourseContext>
-      <ClubContext>
-        <InterestContext>
-          <ChannelContext>
+    <CourseContextContainer>
+      <ClubContextContainer>
+        <InterestContextContainer>
+          <ChannelContextContainer>
             {children}
-          </ChannelContext>
-        </InterestContext>
-      </ClubContext>
-    </CourseContext>
+          </ChannelContextContainer>
+        </InterestContextContainer>
+      </ClubContextContainer>
+    </CourseContextContainer>
   )
 }
