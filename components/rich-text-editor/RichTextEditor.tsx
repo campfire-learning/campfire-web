@@ -64,7 +64,7 @@ export const RichTextEditor = ({
 
     return (
       <button
-        className="mt-2 text-lg font-large text-gray-300 group-hover:text-white"
+        className="bg-blue-500 hover:bg-blue-600 round-lg rounded text-lg font-bold text-gray-300 py-2 px-6 mt-5"
         onClick={enableEdit}
       >
         Edit
@@ -92,13 +92,13 @@ export const RichTextEditor = ({
     return (
       <div className="flex justify-end">
         <button
-          className="mt-2 text-lg font-bold text-gray-300 group-hover:text-blue right-10"
+          className="bg-blue-500 hover:bg-blue-600 round-lg rounded text-lg font-bold text-gray-300 py-2 px-6 mt-5 mr-5"
           onClick={handleCancel}
         >
           Cancel
         </button>
         <button
-          className="mt-2 text-lg font-bold text-gray-300 group-hover:text-blue left-10"
+          className="bg-blue-500 hover:bg-blue-600 round-lg rounded text-lg font-bold text-gray-300 py-2 px-6 mt-5"
           onClick={handleSave}
         >
           Save
@@ -106,8 +106,6 @@ export const RichTextEditor = ({
       </div>
     );
   };
-  console.log("--- richText ===")
-  console.log(richText)
 
   const editorConfig = {
     // The editor theme
@@ -140,11 +138,13 @@ export const RichTextEditor = ({
       {helpInfo}
 
       <LexicalComposer initialConfig={editorConfig}>
-        <div className="editor-container">
+        <div className="editor-container editor-scroller">
           <ToolbarPlugin />
           <div className="editor-inner">
             <RichTextPlugin
-              contentEditable={<ContentEditable className="editor-input" />}
+              contentEditable={
+                  <ContentEditable className="editor-input" />
+              }
               placeholder={<Placeholder />}
             />
             <OnChangePlugin onChange={handleChange} />
