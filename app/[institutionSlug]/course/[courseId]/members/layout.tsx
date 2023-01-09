@@ -1,4 +1,4 @@
-export default function FindClubsLayout({
+export default function MembersLayout({
   children,
 }: {
   children: React.ReactNode

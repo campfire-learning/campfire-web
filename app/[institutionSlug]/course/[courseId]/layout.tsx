@@ -32,42 +32,37 @@ export default function CourseIdLayout({
     {
       name: "Channels",
       icon: ChatBubbleLeftRightIcon,
-      href: `${institution}/course/${courseId}/channels`,
+      href: "#",
       canCreate: true,
     },
     {
       name: "Syllabus",
       icon: DocumentTextIcon,
       href: `${institution}/course/${courseId}/syllabus`,
-      // apiUrl: `/api/v1/courses/${courseId}`,
       canCreate: true,
     },
     {
       name: "Members",
       icon: UserGroupIcon,
       href: `${institution}/course/${courseId}/members`,
-      // apiUrl: `/api/v1/users/?courseId=${courseId}`,
       canCreate: true,
     },
     {
       name: "Assignments",
       icon: DocumentChartBarIcon,
       href: `${institution}/course/${courseId}/assignments`,
-      // apiUrl: `/api/v1/assignments/?courseId=${courseId}`,
       canCreate: true,
     },
     {
       name: "Exams",
       icon: DocumentCheckIcon,
       href: `${institution}/course/${courseId}/exams`,
-      // apiUrl: `/api/v1/exams/?courseId=${courseId}`,
       canCreate: true,
     },
     {
       name: "Grades",
       icon: ChartBarSquareIcon,
       href: `${institution}/course/${courseId}/grades`,
-      // apiUrl: `/api/v1/grades/?courseId=${courseId}&userId=${cachedUser.id}`,
       canCreate: true,
     },
   ]);
