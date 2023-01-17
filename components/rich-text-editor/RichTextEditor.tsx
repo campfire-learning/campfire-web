@@ -2,7 +2,6 @@
 
 import "./editor/styles.css";
 
-import ExampleTheme from "./editor/themes/ExampleTheme";
 import AutoLinkPlugin from "./editor/plugins/AutoLinkPlugin";
 import ListMaxIndentLevelPlugin from "./editor/plugins/ListMaxIndentLevelPlugin";
 import ToolbarPlugin from "components/rich-text-editor/editor/plugins/ToolbarPlugin";
@@ -63,10 +62,7 @@ export const RichTextEditor = ({
     };
 
     return (
-      <button
-        className="bg-blue-500 hover:bg-blue-600 round-lg rounded text-lg font-bold text-gray-300 py-2 px-6 mt-5"
-        onClick={enableEdit}
-      >
+      <button className="cb-button" onClick={enableEdit}>
         Edit
       </button>
     );
@@ -91,16 +87,10 @@ export const RichTextEditor = ({
 
     return (
       <div className="flex justify-end">
-        <button
-          className="bg-blue-500 hover:bg-blue-600 round-lg rounded text-lg font-bold text-gray-300 py-2 px-6 mt-5 mr-5"
-          onClick={handleCancel}
-        >
+        <button className="cb-button" onClick={handleCancel}>
           Cancel
         </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-600 round-lg rounded text-lg font-bold text-gray-300 py-2 px-6 mt-5"
-          onClick={handleSave}
-        >
+        <button className="cb-button" onClick={handleSave}>
           Save
         </button>
       </div>
@@ -108,8 +98,6 @@ export const RichTextEditor = ({
   };
 
   const editorConfig = {
-    // The editor theme
-    theme: ExampleTheme,
     // Handling of errors during update
     onError(error) {
       throw error;
