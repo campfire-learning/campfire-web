@@ -85,20 +85,20 @@ export default function MembersPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {memberships.map((ship) => {
+                  {memberships.map((membership) => {
                     return (
                       <tr className="border-b">
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {ship.user.profile_avatar_url}
+                          {membership.user.profile_avatar_url}
                         </td>
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {ship.user.first_name + " " + ship.user.last_name}
+                          {membership.user.first_name + " " + membership.user.last_name}
                         </td>
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {ship.user.email}
+                          {membership.user.email}
                         </td>
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {ship.role}
+                          {membership.role}
                         </td>
                       </tr>
                     );
