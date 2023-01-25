@@ -67,7 +67,7 @@ export default function CourseIdLayout({
     },
   ]);
 
-  // get "channels" data, which we show directly
+  // get "channels" data, which we show by default
   useQuery({
     queryKey: [`course-channels-${courseId}`],
     queryFn: async () => {
