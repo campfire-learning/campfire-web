@@ -1,4 +1,4 @@
-export default function AssignmentPage() {
+export default function AssignmentIdPage() {
   return (
     <>
       <h1>Ho Ho Ho</h1>

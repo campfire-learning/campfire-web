@@ -46,26 +46,17 @@ export const PrimaryColumn = () => {
     {
       name: "Courses",
       icon: AcademicCapIcon,
-      modal: () => (
-        <PrimaryItemModal
-        itemInfo={{ name: "Courses", icon: AcademicCapIcon }}
-        />
-      ),
+      modal: () => <PrimaryItemModal itemInfo={{ name: "Courses", icon: AcademicCapIcon }} />,
     },
     {
       name: "Clubs",
       icon: TrophyIcon,
-      modal: () => (
-        <PrimaryItemModal itemInfo={{ name: "Clubs", icon: TrophyIcon }} />
-      ),
+      modal: () => <PrimaryItemModal itemInfo={{ name: "Clubs", icon: TrophyIcon }} />,
     },
     {
       name: "Interests",
       icon: UserGroupIcon,
-      modal: () => (
-        <PrimaryItemModal itemInfo={{ name: "Interests", icon: UserGroupIcon }}
-        />
-      ),
+      modal: () => <PrimaryItemModal itemInfo={{ name: "Interests", icon: UserGroupIcon }} />,
     },
   ];
 

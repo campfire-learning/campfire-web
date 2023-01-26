@@ -17,6 +17,8 @@ import {
   SecondaryColumn,
   SecondaryItem,
 } from "components/column/secondary-column/SecondaryColumn";
+import { CreateAssignmentModal } from "components/column/secondary-column/CreateAssignmentModal";
+
 import { CurrentCourseContext } from "components/context/CourseContext";
 
 export default function CourseIdLayout({
@@ -34,36 +36,41 @@ export default function CourseIdLayout({
       icon: ChatBubbleLeftRightIcon,
       href: "#",
       canCreate: true,
-    },
-    {
-      name: "Syllabus",
-      icon: DocumentTextIcon,
-      href: `${institution}/course/${courseId}/syllabus`,
-      canCreate: true,
+      createModal: () => <div />,
     },
     {
       name: "Members",
       icon: UserGroupIcon,
       href: `${institution}/course/${courseId}/members`,
       canCreate: true,
+      createModal: () => <div />,
     },
     {
       name: "Assignments",
       icon: DocumentChartBarIcon,
-      href: `${institution}/course/${courseId}/assignments`,
+      href: "#",
       canCreate: true,
+      createModal: () => <CreateAssignmentModal courseId={ courseId } assignmentType="assignment" />,
     },
     {
       name: "Exams",
       icon: DocumentCheckIcon,
       href: `${institution}/course/${courseId}/exams`,
       canCreate: true,
+      createModal: () => <CreateAssignmentModal courseId={ courseId } assignmentType="exam" />,
     },
     {
       name: "Grades",
       icon: ChartBarSquareIcon,
       href: `${institution}/course/${courseId}/grades`,
       canCreate: true,
+      createModal: () => <div />,
+    },
+    {
+      name: "Syllabus",
+      icon: DocumentTextIcon,
+      href: `${institution}/course/${courseId}/syllabus`,
+      canCreate: false,
     },
   ]);
 
@@ -81,11 +88,36 @@ export default function CourseIdLayout({
         return {
           ...channel,
           name: channel.title,
-          // icon: HashtagIcon,
           href: `${institution}/course/${courseId}/channel/${channel.id}`,
         };
       });
       tmpItemList[0] = { ...tmpItemList[0], children: channelsData };
+      setItemList(tmpItemList);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  // get "assignments" data - it shouldn't have any negative impact on the speed
+  // of the page load since this is executed asynchronously
+  useQuery({
+    queryKey: [`course-assignments-${courseId}`],
+    queryFn: async () => {
+      return axiosAuth.get(
+        `/api/v1/assignments/?course_id=${courseId}`
+      );
+    },
+    onSuccess: (resp: any) => {
+      let tmpItemList = [...itemList];
+      const assignmentsData = resp.data.map((assignment: { title: any; id: any }) => {
+        return {
+          ...assignment,
+          name: assignment.title,
+          href: `${institution}/course/${courseId}/assignment/${assignment.id}`,
+        };
+      });
+      tmpItemList[0] = { ...tmpItemList[0], children: assignmentsData };
       setItemList(tmpItemList);
     },
     onError: (error) => {

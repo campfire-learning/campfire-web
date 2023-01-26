@@ -12,6 +12,7 @@ export interface SecondaryItem {
   href: string;
   level?: number;
   canCreate?: boolean;
+  createModal?: ({ name }: { name: string }) => JSX.Element;
   children?: SecondaryItem[];
 }
 

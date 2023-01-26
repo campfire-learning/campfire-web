@@ -1,6 +1,6 @@
 "use client";
 
-export default function AssignmentLayout({
+export default function AssignmentIdLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-export default function FindClubsLayout({
+export default function AssignmentLayout({
   children,
 }: {
   children: React.ReactNode
