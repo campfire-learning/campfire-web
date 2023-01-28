@@ -55,7 +55,7 @@ export default function CourseIdLayout({
     {
       name: "Exams",
       icon: DocumentCheckIcon,
-      href: `${institution}/course/${courseId}/exams`,
+      href: "#",
       canCreate: true,
       createModal: () => <CreateAssignmentModal courseId={ courseId } assignmentType="exam" />,
     },
@@ -117,7 +117,9 @@ export default function CourseIdLayout({
           href: `${institution}/course/${courseId}/assignment/${assignment.id}`,
         };
       });
-      tmpItemList[0] = { ...tmpItemList[0], children: assignmentsData };
+      console.log(assignmentsData)
+      tmpItemList[2] = { ...tmpItemList[2], children: assignmentsData };
+      tmpItemList[3] = { ...tmpItemList[3], children: assignmentsData };
       setItemList(tmpItemList);
     },
     onError: (error) => {

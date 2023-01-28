@@ -87,7 +87,7 @@ export default function MembersPage() {
                 <tbody>
                   {memberships.map((membership) => {
                     return (
-                      <tr className="border-b">
+                      <tr key={membership.user.email} className="border-b">
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
                           {membership.user.profile_avatar_url}
                         </td>

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import Link from "next/link";
-import { capitalize } from "lodash";
 import { Dialog } from "@headlessui/react";
 
 import { ModalBaseAnimation } from "components/modal/ModalBaseAnimation";
+import { RichTextEditor } from "components/rich-text-editor/RichTextEditor";
+import { UploadFiles } from "components/upload-files/UploadFiles";
 
 export const CreateAssignmentModal = ({
   courseId,
@@ -35,7 +35,7 @@ export const CreateAssignmentModal = ({
                 onClick={() => setOpen(false)}
               >
                 <span className="sr-only">Close</span>
-                <XMarkIcon className=" w-6" aria-hidden="true" />
+                <XMarkIcon className="w-6" aria-hidden="true" />
               </button>
             </div>
             <div className="ml-4 text-left"></div>
@@ -47,7 +47,6 @@ export const CreateAssignmentModal = ({
                 <div>Create a new { assignmentType }</div>
               </span>
             </Dialog.Title>
-            {/* setModalState={setOpen} */}
             <div><h1>one</h1>
             <h1>two</h1>
             <h1>three</h1></div>

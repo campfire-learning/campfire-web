@@ -76,7 +76,7 @@ export const SecondaryColumnNavButton = ({
             ? "bg-zinc-900 text-white"
             : "text-gray-300 hover:bg-zinc-700 hover:text-white"
         } group w-full flex items-center px-2 py-2 text-left md:text-sm font-medium rounded-xl`}
-        onClick={() => onClickFunction?.({ key: item.href })}
+        onClick={() => onClickFunction?.({ key: item.name })}
       >
         {item.children?.length > 0 && (
           <AccordionChevron

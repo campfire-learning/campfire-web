@@ -20,8 +20,6 @@ export default function SyllabusPage() {
       return axiosAuth.get(`/api/v1/courses/${courseId}`);
     },
     onSuccess: (resp: any) => {
-      console.log("response from course endpoint");
-      console.log(resp.data);
       setCurrentCourse(resp.data);
       setExistingFiles(resp.data.uploads_data);
     },
@@ -31,7 +29,7 @@ export default function SyllabusPage() {
   });
 
   const saveSyllabus = (richText: string) => {
-    if (currentCourse.syllabus?.id) {
+    if (currentCourse?.syllabus?.id) {
       axiosAuth.patch(`/api/v1/syllabuses/${currentCourse.syllabus?.id}`, {
         rich_text: richText,
       });
