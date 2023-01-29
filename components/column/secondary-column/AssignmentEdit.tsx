@@ -2,30 +2,28 @@
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 
 import { axiosAuth } from "api/axios";
 import { RichTextEditor } from "components/rich-text-editor/RichTextEditor";
 import { UploadFiles } from "components/upload-files/UploadFiles";
 
 export const AssignmentEdit = ({
-  assignmentId,
   assignmentType,
+  assignment,
 }: {
-  assignmentId?: string
-  assignmentType: string
+  assignmentType: string,
+  assignment?: any,
 }) => {
   const currentPath = usePathname();
   const courseId: string = currentPath.split("/")[3];
-  const [assignment, setAssignment] = useState();
-  const [existingFiles, setExistingFiles] = useState();
   const [error, setError] = useState();
 
   const saveRichText = (richText: string) => {
-    if (assignmentId) {
+    if (assignment?.id) {
       axiosAuth
-        .patch(`/api/v1/courses/${courseId}/assignments/${assignmentId}`, {
+        .patch(`/api/v1/courses/${courseId}/assignments/${assignment?.id}`, {
           rich_text: richText,
+          title: "title - to be added in UI (edited)",
         })
         .catch((err) => {
           console.error(err);
@@ -35,6 +33,7 @@ export const AssignmentEdit = ({
       axiosAuth
         .post(`/api/v1/courses/${courseId}/assignments`, {
           course_id: courseId,
+          title: "title - to be added in UI",
           assignment_type: assignmentType,
           rich_text: richText,
         })
@@ -45,16 +44,14 @@ export const AssignmentEdit = ({
     }
   };
 
-  const upload = (files) => {
+  const uploadFunc = (files) => {
     const formData = new FormData();
     files.forEach((file) => formData.append("uploads[]", file));
-    if (assignmentId) {
-      formData.append("assignment[id]", assignmentId);
+    formData.append("assignment_type", assignmentType)
+    if (assignment?.id) {
+      formData.append("assignment[id]", assignment?.id);
       axiosAuth
-        .patch(
-          `/api/v1/courses/${courseId}/assignments/${assignmentId}`,
-          formData
-        )
+        .patch(`/api/v1/courses/${courseId}/assignments/${assignment?.id}`, formData)
         .catch((err) => {
           console.error(err);
           setError(err);
@@ -69,37 +66,6 @@ export const AssignmentEdit = ({
     }
   };
 
-  if (assignmentId) {
-    const loadAssignment = useQuery({
-      queryKey: ["assignment", assignmentId],
-      queryFn: async () => {
-        return axiosAuth.get(
-          `/api/v1/courses/${courseId}/assignments/${assignmentId}`
-        );
-      },
-      onSuccess: (resp: any) => {
-        setAssignment(resp.data);
-        setExistingFiles(resp.data.uploads_data);
-      },
-      onError: (err) => {
-        console.error(err);
-        setError(err);
-      },
-    });
-
-    if (loadAssignment.status === "error") {
-      return (
-        <>
-          <h1>Oh uh - an error occurred while loading assignment</h1>
-          <h3 className="text-red">{JSON.stringify(loadAssignment.error)}</h3>
-        </>
-      );
-    }
-    if (assignment === undefined) {
-      return <h1>Loading ...</h1>;
-    }
-  }
-
   return (
     <div className="flex flew-row gap-3">
       <div className="basis-[68%] resize">
@@ -109,7 +75,7 @@ export const AssignmentEdit = ({
         />
       </div>
       <div className="basis-[32%] grow-0">
-        <UploadFiles upload={upload} currents={existingFiles} />
+        <UploadFiles upload={uploadFunc} currents={assignment?.uploads_data} />
       </div>
     </div>
   );

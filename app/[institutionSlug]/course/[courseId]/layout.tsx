@@ -119,12 +119,9 @@ export default function CourseIdLayout({
       return axiosAuth.get(`/api/v1/courses/${courseId}/assignments`);
     },
     onSuccess: (resp: any) => {
-      console.log(resp.data);
       let tmpItemList = [...itemList];
       tmpItemList[2] = { ...tmpItemList[2], children: assignmentsForType(resp.data, "assignment") };
       tmpItemList[3] = { ...tmpItemList[3], children: assignmentsForType(resp.data, "exam") };
-      console.log(tmpItemList[2]);
-      console.log(tmpItemList[3]);
       setItemList(tmpItemList);
     },
     onError: (error) => {
