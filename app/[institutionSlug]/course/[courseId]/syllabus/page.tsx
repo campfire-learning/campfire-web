@@ -31,11 +31,11 @@ export default function SyllabusPage() {
 
   const saveSyllabus = (richText: string) => {
     if (currentCourse?.syllabus?.id) {
-      axiosAuth.patch(`/api/v1/syllabuses/${currentCourse.syllabus?.id}`, {
+      axiosAuth.patch(`/api/v1/courses/${currentCourse.id}/syllabuses/${currentCourse.syllabus?.id}`, {
         rich_text: richText,
       });
     } else {
-      axiosAuth.post(`/api/v1/syllabuses`, {
+      axiosAuth.post(`/api/v1/courses/${currentCourse.id}/syllabuses`, {
         rich_text: richText,
         course_id: courseId,
       });
