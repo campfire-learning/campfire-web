@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { CalendarIcon, UsersIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-const _ = require("lodash");
+import { capitalize } from "lodash";
 
 const PrimaryItemModalContentListStyle = ({
   list,
@@ -42,7 +42,7 @@ const PrimaryItemModalContentListStyle = ({
                             className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                             aria-hidden="true"
                           />
-                          {_.capitalize(listItem.term ?? "-")}{" "}
+                          {capitalize(listItem.term ?? "-")}{" "}
                           {listItem.year ?? "-"}
                         </span>
                       </>

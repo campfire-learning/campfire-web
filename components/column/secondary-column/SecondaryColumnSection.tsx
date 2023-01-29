@@ -71,7 +71,7 @@ export const SecondaryColumnSection = ({
       {itemList.map((item) => (
         <Accordion.Root
           type="multiple"
-          key={item.href}
+          key={item.name}
           defaultValue={openAccordionSaved}
         >
           <Accordion.Item value={item.href}>

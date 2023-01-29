@@ -14,14 +14,13 @@ export default function SyllabusPage() {
   const [currentCourse, setCurrentCourse] = useState();
   const [existingFiles, setExistingFiles] = useState();
   const [error, setError] = useState();
+
   const courseLoad = useQuery({
     queryKey: ["course", courseId],
     queryFn: async () => {
       return axiosAuth.get(`/api/v1/courses/${courseId}`);
     },
     onSuccess: (resp: any) => {
-      console.log("response from course endpoint");
-      console.log(resp.data);
       setCurrentCourse(resp.data);
       setExistingFiles(resp.data.uploads_data);
     },
@@ -31,7 +30,7 @@ export default function SyllabusPage() {
   });
 
   const saveSyllabus = (richText: string) => {
-    if (currentCourse.syllabus?.id) {
+    if (currentCourse?.syllabus?.id) {
       axiosAuth.patch(`/api/v1/syllabuses/${currentCourse.syllabus?.id}`, {
         rich_text: richText,
       });
@@ -45,15 +44,15 @@ export default function SyllabusPage() {
 
   const upload = (files) => {
     const formData = new FormData();
-    formData.append('syllabus[id]', currentCourse.syllabus?.id);
-    files.forEach(file => formData.append('uploads[]', file));
+    formData.append("syllabus[id]", currentCourse.syllabus?.id);
+    files.forEach((file) => formData.append("uploads[]", file));
     axiosAuth
       .patch(`/api/v1/syllabuses/${currentCourse.syllabus?.id}`, formData)
       .catch((err) => {
         console.error(err);
         setError(err);
       });
-  }
+  };
 
   if (courseLoad.status === "error") {
     return (
