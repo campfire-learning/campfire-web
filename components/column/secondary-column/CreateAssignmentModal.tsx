@@ -3,8 +3,7 @@ import { PlusIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Dialog } from "@headlessui/react";
 
 import { ModalBaseAnimation } from "components/modal/ModalBaseAnimation";
-import { RichTextEditor } from "components/rich-text-editor/RichTextEditor";
-import { UploadFiles } from "components/upload-files/UploadFiles";
+import { AssignmentEdit } from "./AssignmentEdit";
 
 export const CreateAssignmentModal = ({
   courseId,
@@ -47,9 +46,7 @@ export const CreateAssignmentModal = ({
                 <div>Create a new { assignmentType }</div>
               </span>
             </Dialog.Title>
-            <div><h1>one</h1>
-            <h1>two</h1>
-            <h1>three</h1></div>
+            <AssignmentEdit assignmentType={assignmentType} />
           </Dialog.Panel>
         }
         open={open}

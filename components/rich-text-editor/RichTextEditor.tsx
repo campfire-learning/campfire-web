@@ -42,8 +42,7 @@ export const RichTextEditor = ({
   const [helpInfo, setHelpInfo] = useState(
     richText ? '' :
       <h3 className="text-white pt-10 pb-10">
-        You can enter rich text or just link a PDF file or use both to
-        present your syllabus.
+        You can enter rich text or upload files or use both to make a document.
       </h3>
   )
   const editorStateRef = useRef();

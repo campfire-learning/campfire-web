@@ -14,6 +14,7 @@ export default function SyllabusPage() {
   const [currentCourse, setCurrentCourse] = useState();
   const [existingFiles, setExistingFiles] = useState();
   const [error, setError] = useState();
+
   const courseLoad = useQuery({
     queryKey: ["course", courseId],
     queryFn: async () => {
@@ -43,15 +44,15 @@ export default function SyllabusPage() {
 
   const upload = (files) => {
     const formData = new FormData();
-    formData.append('syllabus[id]', currentCourse.syllabus?.id);
-    files.forEach(file => formData.append('uploads[]', file));
+    formData.append("syllabus[id]", currentCourse.syllabus?.id);
+    files.forEach((file) => formData.append("uploads[]", file));
     axiosAuth
       .patch(`/api/v1/syllabuses/${currentCourse.syllabus?.id}`, formData)
       .catch((err) => {
         console.error(err);
         setError(err);
       });
-  }
+  };
 
   if (courseLoad.status === "error") {
     return (

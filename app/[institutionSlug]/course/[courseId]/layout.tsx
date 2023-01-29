@@ -99,27 +99,32 @@ export default function CourseIdLayout({
     },
   });
 
-  // get "assignments" data - it shouldn't have any negative impact on the speed
-  // of the page load since this is executed asynchronously
-  useQuery({
-    queryKey: [`course-assignments-${courseId}`],
-    queryFn: async () => {
-      return axiosAuth.get(
-        `/api/v1/assignments/?course_id=${courseId}`
-      );
-    },
-    onSuccess: (resp: any) => {
-      let tmpItemList = [...itemList];
-      const assignmentsData = resp.data.map((assignment: { title: any; id: any }) => {
+  const assignmentsForType = (data: Record<string, any>, assType: string) => {
+    return data
+      .filter(assignment => assignment.assignment_type == assType)
+      .map(assignment => {
         return {
           ...assignment,
           name: assignment.title,
           href: `${institution}/course/${courseId}/assignment/${assignment.id}`,
         };
       });
-      console.log(assignmentsData)
-      tmpItemList[2] = { ...tmpItemList[2], children: assignmentsData };
-      tmpItemList[3] = { ...tmpItemList[3], children: assignmentsData };
+  }
+
+  // get "assignments" data - it shouldn't have any negative impact on the speed
+  // of the page load since this is executed asynchronously
+  useQuery({
+    queryKey: [`course-assignments-${courseId}`],
+    queryFn: async () => {
+      return axiosAuth.get(`/api/v1/courses/${courseId}/assignments`);
+    },
+    onSuccess: (resp: any) => {
+      console.log(resp.data);
+      let tmpItemList = [...itemList];
+      tmpItemList[2] = { ...tmpItemList[2], children: assignmentsForType(resp.data, "assignment") };
+      tmpItemList[3] = { ...tmpItemList[3], children: assignmentsForType(resp.data, "exam") };
+      console.log(tmpItemList[2]);
+      console.log(tmpItemList[3]);
       setItemList(tmpItemList);
     },
     onError: (error) => {
