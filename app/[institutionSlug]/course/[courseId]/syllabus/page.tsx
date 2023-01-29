@@ -44,14 +44,25 @@ export default function SyllabusPage() {
 
   const upload = (files) => {
     const formData = new FormData();
-    formData.append("syllabus[id]", currentCourse.syllabus?.id);
-    files.forEach((file) => formData.append("uploads[]", file));
-    axiosAuth
-      .patch(`/api/v1/syllabuses/${currentCourse.syllabus?.id}`, formData)
-      .catch((err) => {
-        console.error(err);
-        setError(err);
-      });
+    if (currentCourse?.syllabus?.id) {
+      files.forEach((file) => formData.append("uploads[]", file));
+      formData.append("syllabus[id]", currentCourse.syllabus?.id);
+      axiosAuth
+        .patch(`/api/v1/courses/${currentCourse.id}/syllabuses/${currentCourse.syllabus?.id}`, formData)
+        .catch((err) => {
+          console.error(err);
+          setError(err);
+        });
+    } else {
+      files.forEach((file) => formData.append("syllabus[uploads][]", file));
+      formData.append("syllabus[course_id]", courseId);
+      axiosAuth
+        .post(`/api/v1/courses/${courseId}/syllabuses`, formData)
+        .catch((err) => {
+          console.error(err);
+          setError(err);
+        });
+    }
   };
 
   if (courseLoad.status === "error") {
