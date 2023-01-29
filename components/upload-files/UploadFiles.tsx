@@ -18,8 +18,8 @@ export const UploadFiles = ({
   }, [currents]);
 
   const handleFileChange = (e) => {
-    console.log("handleFileChange");
-    console.log(e.target.files);
+    // console.log("handleFileChange");
+    // console.log(e.target.files);
     if (e.target.files.length > 0) {
       setNewFiles(Array.from(e.target.files));
     }
@@ -61,8 +61,8 @@ export const UploadFiles = ({
 
   const submitFiles = () => {
     try {
-      console.log("submitFiles");
-      console.log(newFiles);
+      // console.log("submitFiles");
+      // console.log(newFiles);
       upload(newFiles);
       setNewFiles([]);  
     } catch (error) {
