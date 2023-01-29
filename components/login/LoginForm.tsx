@@ -7,6 +7,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation';
 import { ErrorAlert } from 'components/alert/ErrorAlert';
 import { LoadingIcon } from 'components/assets/LoadingIcon';
+import { GenericButtonStyle } from 'components/button/GenericButtonStyle';
 
 export const LoginForm = () => {
   
@@ -107,15 +108,13 @@ export const LoginForm = () => {
                 </div>
               </div>
               <div className="mt-8">
-                <button
-                  type="submit"
-                  className='inline-flex w-full justify-center rounded-md border border-transparent bg-amber-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-amber-800'
-                >
-                  {signInLoading &&
-                    <LoadingIcon/>
-                  } 
-                  Sign in
-                </button>
+                <GenericButtonStyle
+                buttonType='submit'
+                bgColor='bg-amber-700'
+                hoverColor='hover:bg-amber-800'
+                textColor='text-white'
+                loading={signInLoading}
+                text="Sign in"/>
               </div>
             </div>
           </form>
