@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -7,13 +7,12 @@ import { Fragment } from "react";
 export const MobileColumnAnimation = ({
   children,
   columnOpen,
-  setColumnOpen
+  setColumnOpen,
 }: {
-  children: React.ReactNode
-  columnOpen: boolean
-  setColumnOpen: (value: boolean) => void
+  children: React.ReactNode;
+  columnOpen: boolean;
+  setColumnOpen: (value: boolean) => void;
 }) => {
-  
   return (
     <Transition.Root show={columnOpen} as={Fragment}>
       <Dialog as="div" className="relative z-40 md:hidden" onClose={setColumnOpen}>
@@ -28,7 +27,7 @@ export const MobileColumnAnimation = ({
         >
           <div className="fixed inset-0 bg-zinc-600 bg-opacity-75" />
         </Transition.Child>
-      
+
         <div className="fixed inset-0 z-40 flex">
           <Transition.Child
             as={Fragment}
@@ -56,17 +55,19 @@ export const MobileColumnAnimation = ({
                     onClick={() => setColumnOpen(false)}
                   >
                     <span className="sr-only">Close sidebar</span>
-                    <XMarkIcon className="h-6 w-6 text-gray-300 hover:text-gray-100" aria-hidden="true" />
+                    <XMarkIcon
+                      className="h-6 w-6 text-gray-300 hover:text-gray-100"
+                      aria-hidden="true"
+                    />
                   </button>
                 </div>
               </Transition.Child>
               {children}
             </Dialog.Panel>
           </Transition.Child>
-          <div className="w-14 flex-shrink-0"/>
+          <div className="w-14 flex-shrink-0" />
         </div>
       </Dialog>
     </Transition.Root>
-  )
-}
-
+  );
+};

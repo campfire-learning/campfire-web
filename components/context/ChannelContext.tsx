@@ -7,17 +7,16 @@ interface IChannelContext {
 
 const defaultCurrentChannel = {
   currentChannel: {},
-}
+};
 
 export const CurrentChannelContext = createContext<IChannelContext>(defaultCurrentChannel);
 
-
-export const ChannelContextContainer = ({ children } : {children: React.ReactNode}) => {
+export const ChannelContextContainer = ({ children }: { children: React.ReactNode }) => {
   const [currentChannel, setCurrentChannel] = useState<Record<string, unknown>>({});
 
   return (
-      <CurrentChannelContext.Provider value={{currentChannel, setCurrentChannel}}>
-        {children}
-      </CurrentChannelContext.Provider>
-  )
-}
+    <CurrentChannelContext.Provider value={{ currentChannel, setCurrentChannel }}>
+      {children}
+    </CurrentChannelContext.Provider>
+  );
+};

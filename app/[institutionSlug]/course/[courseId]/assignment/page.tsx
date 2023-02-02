@@ -1,7 +1,3 @@
-
-export default function AssignmentPage() {
-  return (
-    <>
-    </>
-  )
+export default function Institution() {
+  return <></>;
 }

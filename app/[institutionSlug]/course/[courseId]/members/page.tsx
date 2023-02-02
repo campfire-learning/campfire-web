@@ -53,33 +53,21 @@ export default function MembersPage() {
       <h1 className="text-white">People in the class</h1>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-hidden">
               <table className="min-w-full text-white">
                 <thead className="border-b">
                   <tr>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
                       Avatar
                     </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
                       Name
                     </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
                       Email
                     </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
                       Role
                     </th>
                   </tr>
@@ -88,16 +76,16 @@ export default function MembersPage() {
                   {memberships.map((membership) => {
                     return (
                       <tr key={membership.user.email} className="border-b">
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
                           {membership.user.profile_avatar_url}
                         </td>
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
                           {membership.user.first_name + " " + membership.user.last_name}
                         </td>
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
                           {membership.user.email}
                         </td>
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
                           {membership.role}
                         </td>
                       </tr>

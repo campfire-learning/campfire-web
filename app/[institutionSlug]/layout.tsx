@@ -7,11 +7,7 @@ import { ProtectedRoute } from "components/routing/ProtectedRoute";
 import { PrimaryColumn } from "components/column/primary-column/PrimaryColumn";
 import { AppContext } from "components/context/AppContext";
 
-export default function InstitutionLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function InstitutionLayout({ children }: { children: React.ReactNode }) {
   const [mobileColumnOpen, setMobileColumnOpen] = useState(false);
 
   return (
@@ -20,20 +16,17 @@ export default function InstitutionLayout({
         <div className="flex h-screen bg-zinc-900">
           {/* Desktop */}
           <div className="flex h-screen py-2">
-            <div className="hidden overflow-y-auto md:block md:w28">
+            <div className="md:w28 hidden overflow-y-auto md:block">
               <PrimaryColumn />
             </div>
           </div>
 
           {/* Mobile */}
-          <MobileColumnAnimation
-            columnOpen={mobileColumnOpen}
-            setColumnOpen={setMobileColumnOpen}
-          >
+          <MobileColumnAnimation columnOpen={mobileColumnOpen} setColumnOpen={setMobileColumnOpen}>
             <PrimaryColumn />
           </MobileColumnAnimation>
 
-          <div className="relative grow flex flex-col h-screen">
+          <div className="relative flex h-screen grow flex-col">
             <MobileOpenColumn setColumnOpen={setMobileColumnOpen} />
             <div className="flex-auto">{children}</div>
           </div>

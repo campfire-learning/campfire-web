@@ -7,17 +7,16 @@ interface IClubContext {
 
 const defaultCurrentClub = {
   currentClub: {},
-}
+};
 
 export const CurrentClubContext = createContext<IClubContext>(defaultCurrentClub);
 
-
-export const ClubContextContainer = ({ children } : {children: React.ReactNode}) => {
+export const ClubContextContainer = ({ children }: { children: React.ReactNode }) => {
   const [currentClub, setCurrentClub] = useState<Record<string, unknown>>({});
 
   return (
-      <CurrentClubContext.Provider value={{currentClub, setCurrentClub}}>
-        {children}
-      </CurrentClubContext.Provider>
-  )
-}
+    <CurrentClubContext.Provider value={{ currentClub, setCurrentClub }}>
+      {children}
+    </CurrentClubContext.Provider>
+  );
+};

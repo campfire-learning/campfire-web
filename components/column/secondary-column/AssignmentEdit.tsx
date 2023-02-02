@@ -11,8 +11,8 @@ export const AssignmentEdit = ({
   assignmentType,
   assignment,
 }: {
-  assignmentType: string,
-  assignment?: any,
+  assignmentType: string;
+  assignment?: any;
 }) => {
   const currentPath = usePathname();
   const courseId: string = currentPath.split("/")[3];
@@ -47,7 +47,7 @@ export const AssignmentEdit = ({
   const uploadFunc = (files) => {
     const formData = new FormData();
     files.forEach((file) => formData.append("uploads[]", file));
-    formData.append("assignment_type", assignmentType)
+    formData.append("assignment_type", assignmentType);
     if (assignment?.id) {
       formData.append("assignment[id]", assignment?.id);
       axiosAuth
@@ -57,24 +57,19 @@ export const AssignmentEdit = ({
           setError(err);
         });
     } else {
-      axiosAuth
-        .post(`/api/v1/courses/${courseId}/assignments`, formData)
-        .catch((err) => {
-          console.error(err);
-          setError(err);
-        });
+      axiosAuth.post(`/api/v1/courses/${courseId}/assignments`, formData).catch((err) => {
+        console.error(err);
+        setError(err);
+      });
     }
   };
 
   return (
-    <div className="flex flew-row gap-3">
+    <div className="flew-row flex gap-3">
       <div className="basis-[68%] resize">
-        <RichTextEditor
-          saveContent={saveRichText}
-          richText={assignment?.rich_text}
-        />
+        <RichTextEditor saveContent={saveRichText} richText={assignment?.rich_text} />
       </div>
-      <div className="basis-[32%] grow-0">
+      <div className="grow-0 basis-[32%]">
         <UploadFiles upload={uploadFunc} currents={assignment?.uploads_data} />
       </div>
     </div>

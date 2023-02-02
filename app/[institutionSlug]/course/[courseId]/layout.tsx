@@ -19,11 +19,7 @@ import { CreateAssignmentModal } from "components/column/secondary-column/Create
 
 import { CurrentCourseContext } from "components/context/CourseContext";
 
-export default function CourseIdLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function CourseIdLayout({ children }: { children: React.ReactNode }) {
   const currentPath = usePathname();
   const institution: string = currentPath.split("/")[1];
   const courseId: string = currentPath.split("/")[3];
@@ -48,14 +44,14 @@ export default function CourseIdLayout({
       icon: DocumentChartBarIcon,
       href: "#",
       canCreate: true,
-      createModal: () => <CreateAssignmentModal courseId={ courseId } assignmentType="assignment" />,
+      createModal: () => <CreateAssignmentModal courseId={courseId} assignmentType="assignment" />,
     },
     {
       name: "Exams",
       icon: DocumentCheckIcon,
       href: "#",
       canCreate: true,
-      createModal: () => <CreateAssignmentModal courseId={ courseId } assignmentType="exam" />,
+      createModal: () => <CreateAssignmentModal courseId={courseId} assignmentType="exam" />,
     },
     {
       name: "Grades",
@@ -76,9 +72,7 @@ export default function CourseIdLayout({
   useQuery({
     queryKey: [`course-channels-${courseId}`],
     queryFn: async () => {
-      return axiosAuth.get(
-        `/api/v1/channels/?context_id=${courseId}&context_type=Course`
-      );
+      return axiosAuth.get(`/api/v1/channels/?context_id=${courseId}&context_type=Course`);
     },
     onSuccess: (resp: any) => {
       let tmpItemList = [...itemList];
@@ -100,15 +94,15 @@ export default function CourseIdLayout({
 
   const assignmentsForType = (data: Record<string, any>, assType: string) => {
     return data
-      .filter(assignment => assignment.assignment_type == assType)
-      .map(assignment => {
+      .filter((assignment) => assignment.assignment_type == assType)
+      .map((assignment) => {
         return {
           ...assignment,
           name: assignment.title,
           href: `${institution}/course/${courseId}/assignment/${assignment.id}`,
         };
       });
-  }
+  };
 
   // get "assignments" data - it shouldn't have any negative impact on the speed
   // of the page load since this is executed asynchronously
@@ -146,13 +140,16 @@ export default function CourseIdLayout({
   return (
     <div className="flex h-screen">
       {/* Desktop */}
-      <div className="flex h-screen py-2 bg-zinc-800">
-        <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-x border-zinc-700 px-2">
-          <SecondaryColumn title={typeof currentCourse.title === 'string' ? currentCourse.title : ''} itemList={itemList} />
+      <div className="flex h-screen bg-zinc-800 py-2">
+        <div className="hidden overflow-y-auto border-x border-zinc-700 bg-zinc-800 px-2 outline-1 md:block md:w-64">
+          <SecondaryColumn
+            title={typeof currentCourse.title === "string" ? currentCourse.title : ""}
+            itemList={itemList}
+          />
         </div>
       </div>
 
-      <div className="relative grow flex flex-col h-screen px-10">
+      <div className="relative flex h-screen grow flex-col">
         <div className="flex-auto">{children}</div>
       </div>
     </div>

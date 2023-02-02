@@ -6,11 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { CurrentInterestContext } from "components/context/InterestContext";
 
-export default function InteretIdLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function InteretIdLayout({ children }: { children: React.ReactNode }) {
   const [interestTitle, setInterestTitle] = useState("");
   const currentPath = usePathname();
   const interestId: string = currentPath.split("/")[3];
@@ -32,7 +28,7 @@ export default function InteretIdLayout({
 
   return (
     <div className="flex h-screen">
-      <div className="relative grow flex flex-col h-screen">
+      <div className="relative flex h-screen grow flex-col">
         <div className="flex-auto">{children}</div>
       </div>
     </div>

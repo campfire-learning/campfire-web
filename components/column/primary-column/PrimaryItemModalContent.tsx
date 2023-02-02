@@ -21,22 +21,29 @@ export const PrimaryItemModalContent = ({
 }) => {
   return (
     <>
-      {findNewHref && <GenericButtonStyle
-        bgColor='bg-gray-700'
-        hoverColor='hover:bg-gray-600'
-        textColor='text-gray-200'
-        padding="pt-5"
-        text={`Find ${modalType}`}
-        href={findNewHref}
-        onClick={() => setModalState(false)}/>}
-      {modalType === "Courses" && (
-        <PrimaryItemModalCourseList setModalState={setModalState} />
+      {findNewHref && (
+        <GenericButtonStyle
+          bgColor="bg-gray-700"
+          hoverColor="hover:bg-gray-600"
+          textColor="text-gray-200"
+          padding="pt-5"
+          text={`Find ${modalType}`}
+          href={findNewHref}
+          onClick={() => setModalState(false)}
+        />
       )}
-      {modalType === "Clubs" && (
-        <PrimaryItemModalClubList setModalState={setModalState} />
-      )}
-      {modalType === "Interests" && (
-        <PrimaryItemModalInterestList setModalState={setModalState} />
+      {modalType === "Courses" && <PrimaryItemModalCourseList setModalState={setModalState} />}
+      {modalType === "Clubs" && <PrimaryItemModalClubList setModalState={setModalState} />}
+      {modalType === "Interests" && <PrimaryItemModalInterestList setModalState={setModalState} />}
+      {canCreateNew && (
+        <GenericButtonStyle
+          bgColor="bg-gray-700"
+          hoverColor="hover:bg-gray-600"
+          textColor="text-gray-200"
+          padding="pt-5"
+          text={`Create ${itemSingular}`}
+          onClick={() => setModalState(false)}
+        />
       )}
       {canCreateNew && <GenericButtonStyle
         bgColor='bg-gray-700'

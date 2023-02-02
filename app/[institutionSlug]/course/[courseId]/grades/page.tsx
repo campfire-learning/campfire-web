@@ -13,7 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosAuth } from "api/axios";
 
 export default function GradesPage() {
-  const user = JSON.parse(localStorage.getItem('user') || "null");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
   const currentPath = usePathname();
   const courseId: string = currentPath.split("/")[3];
   const [grades, setGrades] = useState();
@@ -59,33 +59,21 @@ export default function GradesPage() {
       <h1 className="text-white">People in the class</h1>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-hidden">
               <table className="min-w-full text-white">
                 <thead className="border-b">
                   <tr>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
                       Avatar
                     </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
                       Name
                     </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
                       Assignment
                     </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
                       Grade
                     </th>
                   </tr>
@@ -94,16 +82,16 @@ export default function GradesPage() {
                   {grades.map((grade) => {
                     return (
                       <tr className="border-b">
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
                           {user.profile_avatar_url}
                         </td>
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
                           {user.first_name + " " + user.last_name}
                         </td>
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
                           {grade.assignment.name}
                         </td>
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
                           {grade.result}
                         </td>
                       </tr>

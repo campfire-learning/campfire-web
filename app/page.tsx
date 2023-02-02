@@ -5,5 +5,5 @@ export default function Home() {
     <HomeRoute>
       <p>Landing Page</p>
     </HomeRoute>
-  )
+  );
 }

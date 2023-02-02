@@ -1,11 +1,11 @@
-import { Tab } from '@headlessui/react'
-import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from '@heroicons/react/20/solid'
-import { SelectedChannelLevel, SelectedGroupLevel } from 'components/context/PageContext'
-import { useContext } from 'react'
+import { Tab } from "@headlessui/react";
+import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/20/solid";
+import { SelectedChannelLevel, SelectedGroupLevel } from "components/context/PageContext";
+import { useContext } from "react";
 
-export const ChatPage = ({title} : { title: string}) => {
+export const ChatPage = ({ title }: { title: string }) => {
   return (
-    <form className='sm:px-6 md:px-5'>
+    <form className="sm:px-6 md:px-5">
       <Tab.Group>
         {({ selectedIndex }) => (
           <>
@@ -54,7 +54,7 @@ export const ChatPage = ({title} : { title: string}) => {
                     id="comment"
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-white sm:text-sm"
                     placeholder={`Message #${title}`}
-                    defaultValue={''}
+                    defaultValue={""}
                   />
                 </div>
               </Tab.Panel>
@@ -78,5 +78,5 @@ export const ChatPage = ({title} : { title: string}) => {
         </button>
       </div>
     </form>
-  )
-}
+  );
+};

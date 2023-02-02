@@ -9,8 +9,8 @@ export const CreateAssignmentModal = ({
   courseId,
   assignmentType,
 }: {
-  assignmentType: string,
-  courseId: string,
+  assignmentType: string;
+  courseId: string;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -21,13 +21,13 @@ export const CreateAssignmentModal = ({
   return (
     <>
       <PlusIcon
-        className="hidden text-gray-400 ml-3 h-5 w-5 flex-shrink-0 group-hover:block hover:text-gray-100"
+        className="ml-3 hidden h-5 w-5 flex-shrink-0 text-gray-400 hover:text-gray-100 group-hover:block"
         onClick={() => setOpen(true)}
       />
       <ModalBaseAnimation
         modalContent={
-          <Dialog.Panel className="relative transform overflow-y-auto rounded-lg bg-gray-900 text-left transition-all max-w-[75%] min-w-[25rem] sm:min-w-[60%] p-6 max-h-[90vh]">
-            <div className="absolute top-0 right-0 pt-4 pr-4 block">
+          <Dialog.Panel className="relative max-h-[90vh] min-w-[25rem] max-w-[75%] transform overflow-y-auto rounded-lg bg-gray-900 p-6 text-left transition-all sm:min-w-[60%]">
+            <div className="absolute top-0 right-0 block pt-4 pr-4">
               <button
                 type="button"
                 className="rounded-md bg-gray-900 text-gray-400 hover:text-gray-300 focus:outline-none"
@@ -40,10 +40,10 @@ export const CreateAssignmentModal = ({
             <div className="ml-4 text-left"></div>
             <Dialog.Title
               as="h3"
-              className="text-lg font-medium leading-6 text-gray-300 display:inline"
+              className="display:inline text-lg font-medium leading-6 text-gray-300"
             >
               <span className="flex space-x-1">
-                <div>Create a new { assignmentType }</div>
+                <div>Create a new {assignmentType}</div>
               </span>
             </Dialog.Title>
             <AssignmentEdit assignmentType={assignmentType} />

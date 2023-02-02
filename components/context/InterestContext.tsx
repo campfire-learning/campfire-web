@@ -7,17 +7,16 @@ interface IInterestContext {
 
 const defaultCurrentInterest = {
   currentInterest: {},
-}
+};
 
 export const CurrentInterestContext = createContext<IInterestContext>(defaultCurrentInterest);
 
-
-export const InterestContextContainer = ({ children } : {children: React.ReactNode}) => {
+export const InterestContextContainer = ({ children }: { children: React.ReactNode }) => {
   const [currentInterest, setCurrentInterest] = useState<Record<string, unknown>>({});
 
   return (
-      <CurrentInterestContext.Provider value={{currentInterest, setCurrentInterest}}>
-        {children}
-      </CurrentInterestContext.Provider>
-  )
-}
+    <CurrentInterestContext.Provider value={{ currentInterest, setCurrentInterest }}>
+      {children}
+    </CurrentInterestContext.Provider>
+  );
+};
