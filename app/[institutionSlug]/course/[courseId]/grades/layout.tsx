@@ -1,11 +1,3 @@
-export default function GradesLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <div className="max-w-5xl max-h-64 rounded-lg resize">
-      {children}
-    </div>
-  )
+export default function GradesLayout({ children }: { children: React.ReactNode }) {
+  return <div className="max-h-64 max-w-5xl resize rounded-lg">{children}</div>;
 }

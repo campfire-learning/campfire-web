@@ -27,16 +27,16 @@ export const UploadFiles = ({
 
   const existingFilesView = () => {
     if (!existingFiles) {
-      return (
-        <p className="upload-form-p">No files have been uploaded</p>
-      );
+      return <p className="upload-form-p">No files have been uploaded</p>;
     }
 
     return (
       <ol className="upload-form-ol">
         {existingFiles.map((file) => (
           <li key={file.name} className="upload-form-li">
-            <Link href={file.url} target="_blank">{file.name}</Link>
+            <Link href={file.url} target="_blank">
+              {file.name}
+            </Link>
           </li>
         ))}
       </ol>
@@ -45,15 +45,15 @@ export const UploadFiles = ({
 
   const newFilesView = () => {
     if (!newFiles) {
-      return (
-        <p className="upload-form-p">No files are selected for upload</p>
-      );
+      return <p className="upload-form-p">No files are selected for upload</p>;
     }
 
     return (
       <ol className="upload-form-ol">
         {newFiles.map((file) => (
-          <li key={file.name} className="upload-form-li">{file.name}</li>
+          <li key={file.name} className="upload-form-li">
+            {file.name}
+          </li>
         ))}
       </ol>
     );
@@ -64,7 +64,7 @@ export const UploadFiles = ({
       // console.log("submitFiles");
       // console.log(newFiles);
       upload(newFiles);
-      setNewFiles([]);  
+      setNewFiles([]);
     } catch (error) {
       console.error(error);
       return (
@@ -72,15 +72,13 @@ export const UploadFiles = ({
           <h1>Oh uh - there is an error in submitFiles</h1>
           <h3 className="text-red">{JSON.stringify(error)}</h3>
         </>
-      );  
+      );
     }
   };
 
   return (
     <div>
-      <div className="upload-form rounded-lg">
-        { existingFilesView() }
-      </div>
+      <div className="upload-form rounded-lg">{existingFilesView()}</div>
       <div className="upload-form rounded-lg">
         <div>
           <label htmlFor="uploads" className="upload-form-label">

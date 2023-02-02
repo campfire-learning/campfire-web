@@ -7,7 +7,7 @@ interface ISelectedChannelLevel {
 
 const defaultSelectedChannelLevel = {
   selectedChannelLevel: {},
-}
+};
 
 const SelectedChannelLevel = createContext<ISelectedChannelLevel>(defaultSelectedChannelLevel);
 
@@ -18,22 +18,21 @@ interface ISelectedGroupLevel {
 
 const defaultSelectedGroupLevel = {
   selectedGroupLevel: {},
-}
+};
 
 const SelectedGroupLevel = createContext<ISelectedGroupLevel>(defaultSelectedGroupLevel);
 
+export { SelectedChannelLevel, SelectedGroupLevel };
 
-export {SelectedChannelLevel, SelectedGroupLevel}
-
-export const PageContextContainer = ({ children } : {children: React.ReactNode}) => {
+export const PageContextContainer = ({ children }: { children: React.ReactNode }) => {
   const [selectedChannelLevel, setSelectedChannelLevel] = useState<Record<string, unknown>>({});
   const [selectedGroupLevel, setSelectedGroupLevel] = useState<Record<string, unknown>>({});
 
   return (
-    <SelectedChannelLevel.Provider value={{selectedChannelLevel, setSelectedChannelLevel}}>
-      <SelectedGroupLevel.Provider value={{selectedGroupLevel, setSelectedGroupLevel}}>
+    <SelectedChannelLevel.Provider value={{ selectedChannelLevel, setSelectedChannelLevel }}>
+      <SelectedGroupLevel.Provider value={{ selectedGroupLevel, setSelectedGroupLevel }}>
         {children}
       </SelectedGroupLevel.Provider>
     </SelectedChannelLevel.Provider>
-  )
-}
+  );
+};

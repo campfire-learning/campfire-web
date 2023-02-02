@@ -1,14 +1,11 @@
 "use client";
 
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import { ChevronRightIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { styled } from "@stitches/react";
 import Link from "next/link";
 import { useContext } from "react";
-import {
-  SelectedChannelLevel,
-  SelectedGroupLevel,
-} from "components/context/PageContext";
+import { SelectedChannelLevel, SelectedGroupLevel } from "components/context/PageContext";
 
 export const SecondaryColumnNavButton = ({
   item,
@@ -42,8 +39,7 @@ export const SecondaryColumnNavButton = ({
   };
 
   const selected =
-    item.href === selectedChannelLevel?.href ||
-    item.href === selectedGroupLevel?.href;
+    item.href === selectedChannelLevel?.href || item.href === selectedGroupLevel?.href;
   const setSelect = item?.level === 3 ? setChannelAndGroup : setGroupAndChannel;
 
   const levelSpacing = () => {
@@ -75,7 +71,7 @@ export const SecondaryColumnNavButton = ({
           selected && !item.children
             ? "bg-zinc-900 text-white"
             : "text-gray-300 hover:bg-zinc-700 hover:text-white"
-        } group w-full flex items-center px-2 py-2 text-left md:text-sm font-medium rounded-xl`}
+        } group flex w-full items-center rounded-xl px-2 py-2 text-left font-medium md:text-sm`}
         onClick={() => onClickFunction?.({ key: item.name })}
       >
         {item.children?.length > 0 && (
@@ -91,14 +87,14 @@ export const SecondaryColumnNavButton = ({
               selected && !item.children
                 ? "text-gray-100"
                 : "text-gray-400 group-hover:text-gray-100"
-            } mr-4 md:mr-3 flex-shrink-0 h-6 w-6`}
+            } mr-4 h-6 w-6 flex-shrink-0 md:mr-3`}
             aria-hidden="true"
           />
         )}
-        <span className={`${levelSpacing()} flex-1 truncate`}>
-          {item.name}
-        </span>
-        {item.canCreate > 0 && <item.createModal />}
+        <span className={`${levelSpacing()} flex-1 truncate`}>{item.name}</span>
+        {item.canCreate > 0 && (
+          <PlusIcon className="ml-3 h-5 w-5 flex-shrink-0 text-gray-400 hover:text-gray-100" />
+        )}
       </AccordionTrigger>
     </Accordion.Header>
   );

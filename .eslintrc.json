@@ -1,12 +1,23 @@
 {
   "extends": [
+    "plugin:react/recommended",
     "next/core-web-vitals",
+    "prettier",
+    "plugin:jsx-a11y/recommended",
+    "next/core-web-vitals",
+    "plugin:react-hooks/recommended",
+    "plugin:react/jsx-runtime",
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
+  "plugins": ["jsx-a11y", "react", "@typescript-eslint", "prettier"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
-    "comma-dangle": "off",
-    "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
-    "no-unexpected-multiline": 1
+    "prettier/prettier": ["warn"],
+    "@typescript-eslint/no-unused-vars": ["warn"]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": true
+    }
   }
 }

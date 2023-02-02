@@ -40,11 +40,14 @@ export const RichTextEditor = ({
 }) => {
   const [editable, setEditable] = useState(false);
   const [helpInfo, setHelpInfo] = useState(
-    richText ? '' :
-      <h3 className="text-white pt-10 pb-10">
+    richText ? (
+      ""
+    ) : (
+      <h3 className="pt-10 pb-10 text-white">
         You can enter rich text or upload files or use both to make a document.
       </h3>
-  )
+    )
+  );
   const editorStateRef = useRef();
 
   function handleChange(currentState, editor) {
@@ -78,7 +81,7 @@ export const RichTextEditor = ({
     const handleSave = () => {
       editor.setEditable(false);
       setEditable(false);
-      setHelpInfo('');
+      setHelpInfo("");
 
       const jsonContent = JSON.stringify(editorStateRef.current.toJSON());
       saveContent(jsonContent);
@@ -129,9 +132,7 @@ export const RichTextEditor = ({
           <ToolbarPlugin />
           <div className="editor-inner">
             <RichTextPlugin
-              contentEditable={
-                  <ContentEditable className="editor-input" />
-              }
+              contentEditable={<ContentEditable className="editor-input" />}
               placeholder={<Placeholder />}
             />
             <OnChangePlugin onChange={handleChange} />

@@ -11,46 +11,30 @@ import {
   $getSelection,
   $isRangeSelection,
   $createParagraphNode,
-  $getNodeByKey
+  $getNodeByKey,
 } from "lexical";
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
-import {
-  $isParentElementRTL,
-  $wrapLeafNodesInElements,
-  $isAtNodeEnd
-} from "@lexical/selection";
+import { $isParentElementRTL, $wrapLeafNodesInElements, $isAtNodeEnd } from "@lexical/selection";
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
 import {
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,
   REMOVE_LIST_COMMAND,
   $isListNode,
-  ListNode
+  ListNode,
 } from "@lexical/list";
 import { createPortal } from "react-dom";
-import {
-  $createHeadingNode,
-  $createQuoteNode,
-  $isHeadingNode
-} from "@lexical/rich-text";
+import { $createHeadingNode, $createQuoteNode, $isHeadingNode } from "@lexical/rich-text";
 import {
   $createCodeNode,
   $isCodeNode,
   getDefaultCodeLanguage,
-  getCodeLanguages
+  getCodeLanguages,
 } from "@lexical/code";
 
 const LowPriority = 1;
 
-const supportedBlockTypes = new Set([
-  "paragraph",
-  "quote",
-  "code",
-  "h1",
-  "h2",
-  "ul",
-  "ol"
-]);
+const supportedBlockTypes = new Set(["paragraph", "quote", "code", "h1", "h2", "ul", "ol"]);
 
 const blockTypeToBlockName = {
   code: "Code Block",
@@ -62,7 +46,7 @@ const blockTypeToBlockName = {
   ol: "Numbered List",
   paragraph: "Normal",
   quote: "Quote",
-  ul: "Bulleted List"
+  ul: "Bulleted List",
 };
 
 function Divider() {
@@ -252,12 +236,7 @@ function getSelectedNode(selection) {
   }
 }
 
-function BlockOptionsDropdownList({
-  editor,
-  blockType,
-  toolbarRef,
-  setShowBlockOptionsDropDown
-}) {
+function BlockOptionsDropdownList({ editor, blockType, toolbarRef, setShowBlockOptionsDropDown }) {
   const dropDownRef = useRef(null);
 
   useEffect(() => {
@@ -422,9 +401,7 @@ export default function ToolbarPlugin() {
   const [canRedo, setCanRedo] = useState(false);
   const [blockType, setBlockType] = useState("paragraph");
   const [selectedElementKey, setSelectedElementKey] = useState(null);
-  const [showBlockOptionsDropDown, setShowBlockOptionsDropDown] = useState(
-    false
-  );
+  const [showBlockOptionsDropDown, setShowBlockOptionsDropDown] = useState(false);
   const [codeLanguage, setCodeLanguage] = useState("");
   const [isRTL, setIsRTL] = useState(false);
   const [isLink, setIsLink] = useState(false);
@@ -439,9 +416,7 @@ export default function ToolbarPlugin() {
     if ($isRangeSelection(selection)) {
       const anchorNode = selection.anchor.getNode();
       const element =
-        anchorNode.getKey() === "root"
-          ? anchorNode
-          : anchorNode.getTopLevelElementOrThrow();
+        anchorNode.getKey() === "root" ? anchorNode : anchorNode.getTopLevelElementOrThrow();
       const elementKey = element.getKey();
       const elementDOM = editor.getElementByKey(elementKey);
       if (elementDOM !== null) {
@@ -451,9 +426,7 @@ export default function ToolbarPlugin() {
           const type = parentList ? parentList.getTag() : element.getTag();
           setBlockType(type);
         } else {
-          const type = $isHeadingNode(element)
-            ? element.getTag()
-            : element.getType();
+          const type = $isHeadingNode(element) ? element.getTag() : element.getType();
           setBlockType(type);
           if ($isCodeNode(element)) {
             setCodeLanguage(element.getLanguage() || getDefaultCodeLanguage());
@@ -563,9 +536,7 @@ export default function ToolbarPlugin() {
         <>
           <button
             className="toolbar-item block-controls"
-            onClick={() =>
-              setShowBlockOptionsDropDown(!showBlockOptionsDropDown)
-            }
+            onClick={() => setShowBlockOptionsDropDown(!showBlockOptionsDropDown)}
             aria-label="Formatting Options"
           >
             <span className={"icon block-type " + blockType} />
@@ -628,9 +599,7 @@ export default function ToolbarPlugin() {
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "strikethrough");
             }}
-            className={
-              "toolbar-item spaced " + (isStrikethrough ? "active" : "")
-            }
+            className={"toolbar-item spaced " + (isStrikethrough ? "active" : "")}
             aria-label="Format Strikethrough"
           >
             <i className="format strikethrough" />
@@ -651,8 +620,7 @@ export default function ToolbarPlugin() {
           >
             <i className="format link" />
           </button>
-          {isLink &&
-            createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
+          {isLink && createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
           <Divider />
           <button
             onClick={() => {

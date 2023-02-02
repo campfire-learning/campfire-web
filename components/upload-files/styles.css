@@ -34,8 +34,9 @@
   border: 1px solid black;
 }
 
-.upload-form-label, .upload-form-button {
-  background-color: #7F9CCB;
+.upload-form-label,
+.upload-form-button {
+  background-color: #7f9ccb;
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px ridge black;
@@ -43,12 +44,14 @@
   height: auto;
 }
 
-.upload-form-label:hover, .upload-form-button:hover {
-  background-color: #2D5BA3;
+.upload-form-label:hover,
+.upload-form-button:hover {
+  background-color: #2d5ba3;
   color: white;
 }
 
-.upload-form-label:active, .upload-form-button:active {
-  background-color: #0D3F8F;
+.upload-form-label:active,
+.upload-form-button:active {
+  background-color: #0d3f8f;
   color: white;
 }

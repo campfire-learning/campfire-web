@@ -16,9 +16,7 @@ export default function AssignmentIdPage() {
   const loadAssignment = useQuery({
     queryKey: ["assignment", assignmentId],
     queryFn: async () => {
-      return axiosAuth.get(
-        `/api/v1/courses/${courseId}/assignments/${assignmentId}`
-      );
+      return axiosAuth.get(`/api/v1/courses/${courseId}/assignments/${assignmentId}`);
     },
     onSuccess: (resp: any) => {
       setAssignment(resp.data);
@@ -38,7 +36,5 @@ export default function AssignmentIdPage() {
     return <h1>Loading ...</h1>;
   }
 
-  return (
-    <AssignmentEdit assignmentType="assignment" assignment={ assignment } />
-  )
+  return <AssignmentEdit assignmentType="assignment" assignment={assignment} />;
 }
