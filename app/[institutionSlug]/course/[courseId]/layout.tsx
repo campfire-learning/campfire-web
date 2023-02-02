@@ -76,7 +76,7 @@ export default function CourseIdLayout({ children }: { children: React.ReactNode
     },
     onSuccess: (resp: any) => {
       let tmpItemList = [...itemList];
-      const channelsData = resp.data.map((channel: { title: any; id: any }) => {
+      const channelsData = resp.data.map((channel: { title: any; id: any; }) => {
         return {
           ...channel,
           name: channel.title,

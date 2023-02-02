@@ -45,6 +45,14 @@ export const PrimaryItemModalContent = ({
           onClick={() => setModalState(false)}
         />
       )}
+      {canCreateNew && <GenericButtonStyle
+        bgColor='bg-gray-700'
+        hoverColor='hover:bg-gray-600'
+        textColor='text-gray-200'
+        padding="pt-5"
+        text={`Create ${itemSingular}`}
+        onClick={() => setModalState(false)}
+        />}
     </>
   );
 };

@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { ChatPage } from "components/chat/ChatPage";
 import { CurrentChannelContext } from "components/context/ChannelContext";

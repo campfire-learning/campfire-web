@@ -7,7 +7,9 @@ interface ICourseContext {
 
 const defaultCurrentCourse = {
   currentCourse: {},
-};
+}
+
+export const CurrentCourseContext = createContext<ICourseContext>(defaultCurrentCourse);
 
 export const CurrentCourseContext = createContext<ICourseContext>(defaultCurrentCourse);
 
