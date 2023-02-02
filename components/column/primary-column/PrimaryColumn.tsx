@@ -1,5 +1,4 @@
 import { usePathname } from "next/navigation";
-import { CourseList } from "types/course";
 
 import {
   AcademicCapIcon,
@@ -10,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { CampfireLogo } from "components/assets/CampfireLogo";
 import { BottomBar } from "../bottom-bar/BottomBar";
-import { SVGProps, useState } from "react";
+import { SVGProps } from "react";
 import { PrimaryColumnSection } from "./PrimaryColumnSection";
 import { PrimaryItemModal } from "./PrimaryColumnItemModal";
 
@@ -37,7 +36,6 @@ interface IPrimaryItemModal extends PrimaryItemBase {
 export type PrimaryItemType = IPrimryItemHref | IPrimaryItemModal;
 
 export const PrimaryColumn = () => {
-  const [courses, setCourses] = useState<CourseList>([]);
 
   const currentPath = usePathname();
   const institution = currentPath.split("/")[1];
@@ -46,17 +44,36 @@ export const PrimaryColumn = () => {
     {
       name: "Courses",
       icon: AcademicCapIcon,
-      modal: () => <PrimaryItemModal itemInfo={{ name: "Courses", icon: AcademicCapIcon }} />,
+      modal: () => (
+        <PrimaryItemModal
+        itemInfo={{ name: "Courses", icon: AcademicCapIcon }}
+        itemSingular="Course"
+        findNewHref={`${institution}/find-courses`}
+        canCreateNew={true}
+        />
+      ),
     },
     {
       name: "Clubs",
       icon: TrophyIcon,
-      modal: () => <PrimaryItemModal itemInfo={{ name: "Clubs", icon: TrophyIcon }} />,
+      modal: () => (
+        <PrimaryItemModal itemInfo={{ name: "Clubs", icon: TrophyIcon }}
+        itemSingular="Club" 
+        findNewHref={`${institution}/find-clubs`}
+        canCreateNew={true}
+        />
+      ),
     },
     {
       name: "Interests",
       icon: UserGroupIcon,
-      modal: () => <PrimaryItemModal itemInfo={{ name: "Interests", icon: UserGroupIcon }} />,
+      modal: () => (
+        <PrimaryItemModal itemInfo={{ name: "Interests", icon: UserGroupIcon }}
+        itemSingular="Interest"
+        findNewHref={`${institution}/find-interests`}
+        canCreateNew={true}
+        />
+      ),
     },
   ];
 

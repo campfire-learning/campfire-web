@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { ChatPage } from "components/chat/ChatPage";
 import { CurrentChannelContext } from "components/context/ChannelContext";
@@ -13,22 +13,12 @@ export default function CourseChannelIdPage() {
 
   return (
     <>
-      <PageTitle
-        titleArgs={{
-          titles: [
-            typeof currentCourse.title === "string" ? currentCourse.title : "",
-            typeof currentChannel.title === "string"
-              ? currentChannel.title
-              : "",
-          ],
-        }}
-      />
-      <Underline />
-      <ChatPage
-        title={
-          typeof currentChannel.title === "string" ? currentChannel.title : ""
-        }
-      />
+      <PageTitle 
+      titleArgs={{
+        titles: [typeof currentCourse.title === 'string' ? currentCourse.title : '', typeof currentChannel.title === 'string' ? currentChannel.title : '']
+        }}/>
+      <Underline/>
+      <ChatPage title={typeof currentChannel.title === 'string' ? currentChannel.title : ''}/>
     </>
   );
 }

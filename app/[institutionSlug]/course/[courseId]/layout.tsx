@@ -6,17 +6,15 @@ import {
   DocumentChartBarIcon,
   DocumentCheckIcon,
   DocumentTextIcon,
+  HashtagIcon,
   UserGroupIcon,
 } from "@heroicons/react/20/solid";
+
+import { axiosAuth } from "api/axios";
+import { SecondaryColumn, SecondaryItem } from "components/column/secondary-column/SecondaryColumn";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
-
-import { axiosAuth } from "api/axios";
-import {
-  SecondaryColumn,
-  SecondaryItem,
-} from "components/column/secondary-column/SecondaryColumn";
 import { CreateAssignmentModal } from "components/column/secondary-column/CreateAssignmentModal";
 
 import { CurrentCourseContext } from "components/context/CourseContext";
@@ -84,10 +82,11 @@ export default function CourseIdLayout({
     },
     onSuccess: (resp: any) => {
       let tmpItemList = [...itemList];
-      const channelsData = resp.data.map((channel: { title: any; id: any }) => {
+      const channelsData = resp.data.map((channel: { title: any; id: any; }) => {
         return {
           ...channel,
           name: channel.title,
+          // icon: HashtagIcon,
           href: `${institution}/course/${courseId}/channel/${channel.id}`,
         };
       });
@@ -149,12 +148,7 @@ export default function CourseIdLayout({
       {/* Desktop */}
       <div className="flex h-screen py-2 bg-zinc-800">
         <div className="hidden overflow-y-auto bg-zinc-800 outline-1 md:block md:w-64 border-x border-zinc-700 px-2">
-          <SecondaryColumn
-            title={
-              typeof currentCourse.title === "string" ? currentCourse.title : ""
-            }
-            itemList={itemList}
-          />
+          <SecondaryColumn title={typeof currentCourse.title === 'string' ? currentCourse.title : ''} itemList={itemList} />
         </div>
       </div>
 

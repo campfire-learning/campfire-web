@@ -7,8 +7,14 @@ import { PrimaryItemModalContent } from "./PrimaryItemModalContent";
 
 export const PrimaryItemModal = ({
   itemInfo,
+  itemSingular,
+  findNewHref,
+  canCreateNew,
 } : {
   itemInfo: PrimaryItemBase;
+  itemSingular: string;
+  findNewHref?: string
+  canCreateNew?: boolean
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -32,7 +38,7 @@ export const PrimaryItemModal = ({
 
       <ModalBaseAnimation
         modalContent={
-          <Dialog.Panel className="relative transform overflow-y-auto rounded-lg bg-gray-900 text-left transition-all max-w-[75%] min-w-[25rem] sm:min-w-[60%] p-6 max-h-[90vh]">
+          <Dialog.Panel className="relative transform overflow-y-auto rounded-lg bg-gray-900 text-left transition-all max-w-[75%] min-w-[25rem] sm:min-w-[60%] p-6 max-h-[93vh]">
             <div className="absolute top-0 right-0 pt-4 pr-4 block">
               <button
                 type="button"
@@ -58,6 +64,9 @@ export const PrimaryItemModal = ({
             <PrimaryItemModalContent
               setModalState={setOpen}
               modalType={itemInfo.name}
+              itemSingular={itemSingular}
+              findNewHref={findNewHref}
+              canCreateNew={canCreateNew}
             />
           </Dialog.Panel>
         }
