@@ -32,3 +32,9 @@
   scrollbar-width: thin;
 }
 
+/* custom styles */
+@layer components {
+  .cb-button {
+    @apply bg-blue-500 hover:bg-blue-600 rounded-lg rounded text-lg font-bold text-gray-300 py-2 px-6 mt-5
+  }  
+}

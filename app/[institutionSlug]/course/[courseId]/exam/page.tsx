@@ -1,5 +1,4 @@
-
-export default function Institution() {
+export default function ExamPage() {
   return (
     <>
     </>

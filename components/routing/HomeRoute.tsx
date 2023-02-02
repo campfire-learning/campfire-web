@@ -11,9 +11,10 @@ export const HomeRoute = ({
 
   const localStorageExists = (typeof window !== 'undefined')
   const institution = localStorageExists && JSON.parse(localStorage.getItem('user') || 'null')?.institution_slug
+  console.log(`institution is - ${institution}`);
 
   if (institution) {
-        router.push(`/${institution}`)
+    router.push(`/${institution}`)
   }
 
   return (

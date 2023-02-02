@@ -9,11 +9,14 @@ import {
   HashtagIcon,
   UserGroupIcon,
 } from "@heroicons/react/20/solid";
+
 import { axiosAuth } from "api/axios";
 import { SecondaryColumn, SecondaryItem } from "components/column/secondary-column/SecondaryColumn";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
+import { CreateAssignmentModal } from "components/column/secondary-column/CreateAssignmentModal";
+
 import { CurrentCourseContext } from "components/context/CourseContext";
 
 export default function CourseIdLayout({
@@ -29,47 +32,47 @@ export default function CourseIdLayout({
     {
       name: "Channels",
       icon: ChatBubbleLeftRightIcon,
-      href: `${institution}/course/${courseId}/channels`,
+      href: "#",
       canCreate: true,
-    },
-    {
-      name: "Syllabus",
-      icon: DocumentTextIcon,
-      href: `${institution}/course/${courseId}/syllabus`,
-      // apiUrl: `/api/v1/courses/${courseId}`,
-      canCreate: true,
+      createModal: () => <div />,
     },
     {
       name: "Members",
       icon: UserGroupIcon,
       href: `${institution}/course/${courseId}/members`,
-      // apiUrl: `/api/v1/users/?courseId=${courseId}`,
       canCreate: true,
+      createModal: () => <div />,
     },
     {
       name: "Assignments",
       icon: DocumentChartBarIcon,
-      href: `${institution}/course/${courseId}/assignments`,
-      // apiUrl: `/api/v1/assignments/?courseId=${courseId}`,
+      href: "#",
       canCreate: true,
+      createModal: () => <CreateAssignmentModal courseId={ courseId } assignmentType="assignment" />,
     },
     {
       name: "Exams",
       icon: DocumentCheckIcon,
-      href: `${institution}/course/${courseId}/exams`,
-      // apiUrl: `/api/v1/exams/?courseId=${courseId}`,
+      href: "#",
       canCreate: true,
+      createModal: () => <CreateAssignmentModal courseId={ courseId } assignmentType="exam" />,
     },
     {
       name: "Grades",
       icon: ChartBarSquareIcon,
       href: `${institution}/course/${courseId}/grades`,
-      // apiUrl: `/api/v1/grades/?courseId=${courseId}&userId=${cachedUser.id}`,
       canCreate: true,
+      createModal: () => <div />,
+    },
+    {
+      name: "Syllabus",
+      icon: DocumentTextIcon,
+      href: `${institution}/course/${courseId}/syllabus`,
+      canCreate: false,
     },
   ]);
 
-  // get "channels" data, which we show directly
+  // get "channels" data, which we show by default
   useQuery({
     queryKey: [`course-channels-${courseId}`],
     queryFn: async () => {
@@ -88,6 +91,36 @@ export default function CourseIdLayout({
         };
       });
       tmpItemList[0] = { ...tmpItemList[0], children: channelsData };
+      setItemList(tmpItemList);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  const assignmentsForType = (data: Record<string, any>, assType: string) => {
+    return data
+      .filter(assignment => assignment.assignment_type == assType)
+      .map(assignment => {
+        return {
+          ...assignment,
+          name: assignment.title,
+          href: `${institution}/course/${courseId}/assignment/${assignment.id}`,
+        };
+      });
+  }
+
+  // get "assignments" data - it shouldn't have any negative impact on the speed
+  // of the page load since this is executed asynchronously
+  useQuery({
+    queryKey: [`course-assignments-${courseId}`],
+    queryFn: async () => {
+      return axiosAuth.get(`/api/v1/courses/${courseId}/assignments`);
+    },
+    onSuccess: (resp: any) => {
+      let tmpItemList = [...itemList];
+      tmpItemList[2] = { ...tmpItemList[2], children: assignmentsForType(resp.data, "assignment") };
+      tmpItemList[3] = { ...tmpItemList[3], children: assignmentsForType(resp.data, "exam") };
       setItemList(tmpItemList);
     },
     onError: (error) => {
@@ -119,7 +152,7 @@ export default function CourseIdLayout({
         </div>
       </div>
 
-      <div className="relative grow flex flex-col h-screen">
+      <div className="relative grow flex flex-col h-screen px-10">
         <div className="flex-auto">{children}</div>
       </div>
     </div>

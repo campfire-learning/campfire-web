@@ -9,7 +9,6 @@ import { useContext } from "react";
 
 export default function CourseChannelIdPage() {
   const { currentCourse, setCurrentCourse } = useContext(CurrentCourseContext);
-
   const { currentChannel, setCurrentChannel } = useContext(CurrentChannelContext);
 
   return (

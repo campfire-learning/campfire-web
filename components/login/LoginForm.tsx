@@ -10,8 +10,6 @@ import { LoadingIcon } from 'components/assets/LoadingIcon';
 import { GenericButtonStyle } from 'components/button/GenericButtonStyle';
 
 export const LoginForm = () => {
-  
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -24,6 +22,7 @@ export const LoginForm = () => {
 
   const router = useRouter();
 
+  console.log(`institution is - ${institution}`);
   const loginMutation = useMutation({
     mutationFn: SubmitLogin,
     onMutate: () => {

@@ -1,5 +1,5 @@
 
-export default function Institution() {
+export default function AssignmentPage() {
   return (
     <>
     </>

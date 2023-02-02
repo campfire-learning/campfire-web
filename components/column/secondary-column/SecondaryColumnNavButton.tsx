@@ -1,7 +1,7 @@
 "use client";
 
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronRightIcon, PlusIcon } from "@heroicons/react/20/solid";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { styled } from "@stitches/react";
 import Link from "next/link";
 import { useContext } from "react";
@@ -69,44 +69,36 @@ export const SecondaryColumnNavButton = ({
   };
 
   const navButton = (
-    <Accordion.Header>
+    <Accordion.Header className="group">
       <AccordionTrigger
         className={`${
           selected && !item.children
             ? "bg-zinc-900 text-white"
             : "text-gray-300 hover:bg-zinc-700 hover:text-white"
-        } 
-      group w-full flex items-center px-2 py-2 text-left md:text-sm font-medium rounded-xl`}
-        onClick={() => onClickFunction?.({ key: item.href })}
+        } group w-full flex items-center px-2 py-2 text-left md:text-sm font-medium rounded-xl`}
+        onClick={() => onClickFunction?.({ key: item.name })}
       >
+        {item.children?.length > 0 && (
+          <AccordionChevron
+            className={`${
+              selected && !item.children ? "text-gray-100" : "text-gray-400"
+            } ml-1 h-5 w-5 flex-shrink-0 group-hover:text-gray-100`}
+          />
+        )}
         {item.icon && (
           <item.icon
             className={`${
               selected && !item.children
                 ? "text-gray-100"
                 : "text-gray-400 group-hover:text-gray-100"
-            } 
-      mr-4 md:mr-3 flex-shrink-0 h-6 w-6`}
+            } mr-4 md:mr-3 flex-shrink-0 h-6 w-6`}
             aria-hidden="true"
           />
         )}
-        <span
-          className={`${levelSpacing()}
-      flex-1 truncate`}
-        >
+        <span className={`${levelSpacing()} flex-1 truncate`}>
           {item.name}
         </span>
-        {item.canCreate > 0 && (
-          <PlusIcon className="text-gray-400 hover:text-gray-100 ml-3 h-5 w-5 flex-shrink-0" />
-        )}
-        {item.children?.length > 0 && (
-          <AccordionChevron
-            className={`${
-              selected && !item.children ? "text-gray-100" : "text-gray-400"
-            } 
-      ml-1 h-5 w-5 flex-shrink-0 group-hover:text-gray-100`}
-          />
-        )}
+        {item.canCreate > 0 && <item.createModal />}
       </AccordionTrigger>
     </Accordion.Header>
   );
