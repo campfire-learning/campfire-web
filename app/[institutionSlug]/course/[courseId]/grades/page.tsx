@@ -13,14 +13,15 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosAuth } from "api/axios";
 
 export default function GradesPage() {
-  const user = JSON.parse(localStorage.getItem('user') || "null");
+  const inBrowser = typeof window !== "undefined";
+  const user = inBrowser && JSON.parse(localStorage.getItem('user') || "null");
   const currentPath = usePathname();
   const courseId: string = currentPath.split("/")[3];
   const [grades, setGrades] = useState();
   const query = useQuery({
     queryKey: ["grades", courseId],
     queryFn: async () => {
-      return axiosAuth.get(`/api/v1/grades/?course_id=${courseId}`);
+      return axiosAuth.get(`/api/v1/courses/${courseId}/grades`);
     },
     onSuccess: (resp: any) => {
       setGrades(resp.data);
@@ -32,7 +33,7 @@ export default function GradesPage() {
 
   const saveGrade = (grade: Record<string, any>) => {
     if (grade.id) {
-      axiosAuth.patch(`/api/v1/grades`, {
+      axiosAuth.patch(`/api/v1/courses/${courseId}/grades`, {
         id: grade.id,
         user_id: user.id,
         assignment_id: user.id,
@@ -86,25 +87,34 @@ export default function GradesPage() {
                       scope="col"
                       className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
                     >
-                      Grade
+                      Score
+                    </th>
+                    <th
+                      scope="col"
+                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
+                    >
+                      Status
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {grades.map((grade) => {
                     return (
-                      <tr className="border-b">
+                      <tr className="border-b" key={ `${grade.user.id}-${grade.assignment.id}` }>
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {user.profile_avatar_url}
+                          {grade.user.profile_avatar_url}
                         </td>
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {user.first_name + " " + user.last_name}
+                          {grade.user.first_name + " " + grade.user.last_name}
                         </td>
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {grade.assignment.name}
+                          {grade.assignment.title}
                         </td>
                         <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {grade.result}
+                          {grade.score}
+                        </td>
+                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
+                          {grade.status}
                         </td>
                       </tr>
                     );
