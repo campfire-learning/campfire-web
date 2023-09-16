@@ -21,6 +21,32 @@ import { CreateAssignmentModal } from "components/column/secondary-column/Create
 
 import { CurrentCourseContext } from "components/context/CourseContext";
 
+// create function that takes into two dates and return the number of days between them
+const daysBetween = (date1: Date, date2: Date) => {
+  // The number of milliseconds in one day
+  const ONE_DAY = 1000 * 60 * 60 * 24;
+
+  // Calculate the difference in milliseconds
+  const differenceMs = Math.abs(date1.getTime() - date2.getTime());
+
+  // Convert back to days and return
+  return Math.round(differenceMs / ONE_DAY);
+}
+
+
+// return number of weeks between two dates, as a string of a float number rounded to 2 decimals
+const weeksBetween = (date1: Date, date2: Date) => {
+  // first # of milliseconds in a week
+  const ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
+
+  // then calculate the difference in milliseconds
+  const differenceMs = Math.abs(date1.getTime() - date2.getTime());
+
+  // convert differenceMs to weeks
+  return (differenceMs / ONE_WEEK).toFixed(2);
+}
+
+
 export default function CourseIdLayout({
   children,
 }: {

@@ -21,7 +21,6 @@ export const LoginForm = () => {
 
   const router = useRouter();
 
-  console.log(`institution is - ${institution}`);
   const loginMutation = useMutation({
     mutationFn: SubmitLogin,
     onMutate: () => {
