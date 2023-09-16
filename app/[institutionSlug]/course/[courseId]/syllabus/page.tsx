@@ -31,9 +31,12 @@ export default function SyllabusPage() {
 
   const saveSyllabus = (richText: string) => {
     if (currentCourse?.syllabus?.id) {
-      axiosAuth.patch(`/api/v1/courses/${currentCourse.id}/syllabuses/${currentCourse.syllabus?.id}`, {
-        rich_text: richText,
-      });
+      axiosAuth.patch(
+        `/api/v1/courses/${currentCourse.id}/syllabuses/${currentCourse.syllabus?.id}`,
+        {
+          rich_text: richText,
+        }
+      );
     } else {
       axiosAuth.post(`/api/v1/courses/${currentCourse.id}/syllabuses`, {
         rich_text: richText,
@@ -48,7 +51,10 @@ export default function SyllabusPage() {
       files.forEach((file) => formData.append("uploads[]", file));
       formData.append("syllabus[id]", currentCourse.syllabus?.id);
       axiosAuth
-        .patch(`/api/v1/courses/${currentCourse.id}/syllabuses/${currentCourse.syllabus?.id}`, formData)
+        .patch(
+          `/api/v1/courses/${currentCourse.id}/syllabuses/${currentCourse.syllabus?.id}`,
+          formData
+        )
         .catch((err) => {
           console.error(err);
           setError(err);
@@ -56,12 +62,10 @@ export default function SyllabusPage() {
     } else {
       files.forEach((file) => formData.append("syllabus[uploads][]", file));
       formData.append("syllabus[course_id]", courseId);
-      axiosAuth
-        .post(`/api/v1/courses/${courseId}/syllabuses`, formData)
-        .catch((err) => {
-          console.error(err);
-          setError(err);
-        });
+      axiosAuth.post(`/api/v1/courses/${courseId}/syllabuses`, formData).catch((err) => {
+        console.error(err);
+        setError(err);
+      });
     }
   };
 
@@ -88,15 +92,12 @@ export default function SyllabusPage() {
   }
 
   return (
-    <div className="flex flew-row gap-3">
+    <div className="flew-row flex gap-3">
       <div className="basis-[68%] resize">
-        <RichTextEditor
-          saveContent={saveSyllabus}
-          richText={currentCourse.syllabus?.rich_text}
-        />
+        <RichTextEditor saveContent={saveSyllabus} richText={currentCourse.syllabus?.rich_text} />
       </div>
-      <div className="basis-[32%] grow-0">
-        <UploadFiles upload={upload} currents={ existingFiles } />
+      <div className="grow-0 basis-[32%]">
+        <UploadFiles upload={upload} currents={existingFiles} />
       </div>
     </div>
   );

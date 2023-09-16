@@ -3,5 +3,5 @@ export default function LoginHead() {
     <>
       <title>Campfire - Login</title>
     </>
-  )
+  );
 }

@@ -1,11 +1,6 @@
-import { XCircleIcon } from "@heroicons/react/20/solid"
+import { XCircleIcon } from "@heroicons/react/20/solid";
 
-export const ErrorAlert = ({
-  errorMessage
-} : {
-  errorMessage: string
-}) => {
-
+export const ErrorAlert = ({ errorMessage }: { errorMessage: string }) => {
   return (
     <div className="rounded-md bg-red-100 p-4">
       <div className="flex">
@@ -17,5 +12,5 @@ export const ErrorAlert = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

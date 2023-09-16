@@ -4,27 +4,27 @@
 
 ::-webkit-scrollbar {
   width: 0px;
-  visibility:hidden;
+  visibility: hidden;
 }
 
 :hover::-webkit-scrollbar {
   width: 5px;
-  visibility:visible;
+  visibility: visible;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.4);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
   background-color: #52525b;
-  visibility:hidden;
+  visibility: hidden;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #71717a; 
+  background: #71717a;
 }
 
 :hover::-webkit-scrollbar-thumb {
-  visibility:visible;
+  visibility: visible;
 }
 
 /* for firefox */
@@ -35,6 +35,6 @@
 /* custom styles */
 @layer components {
   .cb-button {
-    @apply bg-blue-500 hover:bg-blue-600 rounded-lg rounded text-lg font-bold text-gray-300 py-2 px-6 mt-5
-  }  
+    @apply mt-5 rounded-lg rounded bg-blue-500 py-2 px-6 text-lg font-bold text-gray-300 hover:bg-blue-600;
+  }
 }

@@ -129,16 +129,22 @@ export default function GradesPage() {
 
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-hidden">
               <table className="min-w-full text-white">
                 <thead className="border-b">
                   <tr>
-                    <th
-                      scope="col"
-                      className="text-sm font-lg text-gray-100 px-6 py-4 text-left"
-                    >
-                      Student
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
+                      Avatar
+                    </th>
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
+                      Name
+                    </th>
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
+                      Assignment
+                    </th>
+                    <th scope="col" className="font-lg px-6 py-4 text-left text-sm text-gray-100">
+                      Grade
                     </th>
                     {assignments?.map((assignment) => (
                       <th
@@ -153,12 +159,18 @@ export default function GradesPage() {
                 <tbody>
                   {selectedGrades.map((grade) => {
                     return (
-                      <tr
-                        className="border-b"
-                        key={`${grade.user.id}-${grade.gradable.id}`}
-                      >
-                        <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                          {grade.user.first_name + " " + grade.user.last_name}
+                      <tr className="border-b">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
+                          {user.profile_avatar_url}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
+                          {user.first_name + " " + user.last_name}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
+                          {grade.assignment.name}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-100">
+                          {grade.result}
                         </td>
                         {assignments.map((assignment) => {
                           <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">

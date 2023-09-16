@@ -17,15 +17,12 @@ const PrimaryItemModalContentListStyle = ({
 }) => {
   return (
     <div className="pt-5">
-      <div className="overflow-y-auto max-h-[70vh] bg-gray-800 outline outline-gray-400 rounded-md">
+      <div className="max-h-[60vh] overflow-y-auto rounded-md bg-gray-800 outline outline-gray-400">
         <ul role="list" className="divide-y divide-gray-400">
           {list &&
             list.map((listItem) => (
               <li key={listItem.id} onClick={() => setModalState(false)}>
-                <Link
-                  href={`${href_start}/${listItem.id}`}
-                  className="block hover:bg-gray-700"
-                >
+                <Link href={`${href_start}/${listItem.id}`} className="block hover:bg-gray-700">
                   <div className="px-4 py-4">
                     <div className="flex items-center justify-between">
                       <span className="truncate text-sm font-medium text-gray-300">
@@ -42,8 +39,7 @@ const PrimaryItemModalContentListStyle = ({
                             className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                             aria-hidden="true"
                           />
-                          {capitalize(listItem.term ?? "-")}{" "}
-                          {listItem.year ?? "-"}
+                          {capitalize(listItem.term ?? "-")} {listItem.year ?? "-"}
                         </span>
                       </>
                       <>

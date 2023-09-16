@@ -1,14 +1,10 @@
-import '../styles/globals.css'
-import { Inter } from '@next/font/google'
-import { ReactQueryWrapper } from '../components/query/ReactQueryWrapper'
+import "../styles/globals.css";
+import { Inter } from "@next/font/google";
+import { ReactQueryWrapper } from "../components/query/ReactQueryWrapper";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className={inter.className}>
       <head>
@@ -18,10 +14,8 @@ export default function RootLayout({
         <link rel="icon" href="campfireLogo.ico" />
       </head>
       <body>
-        <ReactQueryWrapper>
-          {children}
-        </ReactQueryWrapper>
-        </body>
+        <ReactQueryWrapper>{children}</ReactQueryWrapper>
+      </body>
     </html>
-  )
+  );
 }

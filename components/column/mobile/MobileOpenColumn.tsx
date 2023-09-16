@@ -1,11 +1,11 @@
-import { Bars3Icon } from "@heroicons/react/24/outline"
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 export const MobileOpenColumn = ({
-  setColumnOpen
+  setColumnOpen,
 }: {
-  setColumnOpen: (value: boolean) => void
+  setColumnOpen: (value: boolean) => void;
 }) => {
-  return(
+  return (
     <div className="sticky top-0 z-10 bg-zinc-900 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
       <button
         type="button"
@@ -16,5 +16,5 @@ export const MobileOpenColumn = ({
         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
       </button>
     </div>
-  )
-}
+  );
+};

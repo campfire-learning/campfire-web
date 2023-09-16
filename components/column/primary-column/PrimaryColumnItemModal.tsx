@@ -7,8 +7,14 @@ import { PrimaryItemModalContent } from "./PrimaryItemModalContent";
 
 export const PrimaryItemModal = ({
   itemInfo,
-} : {
+  itemSingular,
+  findNewHref,
+  canCreateNew,
+}: {
   itemInfo: PrimaryItemBase;
+  itemSingular: string;
+  findNewHref?: string;
+  canCreateNew?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -18,10 +24,10 @@ export const PrimaryItemModal = ({
         <button
           key={itemInfo.name}
           onClick={() => setOpen(true)}
-          className="hover:bg-zinc-700 group w-full p-3 rounded-md flex flex-col items-center"
+          className="group flex w-full flex-col items-center rounded-md p-3 hover:bg-zinc-700"
         >
           <itemInfo.icon
-            className="text-gray-400 group-hover:text-gray-100 w-8"
+            className="w-8 text-gray-400 group-hover:text-gray-100"
             aria-hidden="true"
           />
           <span className="mt-2 text-xs font-medium text-gray-300 group-hover:text-white">
@@ -32,8 +38,8 @@ export const PrimaryItemModal = ({
 
       <ModalBaseAnimation
         modalContent={
-          <Dialog.Panel className="relative transform overflow-y-auto rounded-lg bg-gray-900 text-left transition-all max-w-[75%] min-w-[25rem] sm:min-w-[60%] p-6 max-h-[90vh]">
-            <div className="absolute top-0 right-0 pt-4 pr-4 block">
+          <Dialog.Panel className="relative max-h-[93vh] min-w-[25rem] max-w-[75%] transform overflow-y-auto rounded-lg bg-gray-900 p-6 text-left transition-all sm:min-w-[60%]">
+            <div className="absolute top-0 right-0 block pt-4 pr-4">
               <button
                 type="button"
                 className="rounded-md bg-gray-900 text-gray-400 hover:text-gray-300 focus:outline-none"
@@ -46,7 +52,7 @@ export const PrimaryItemModal = ({
             <div className="ml-4 text-left"></div>
             <Dialog.Title
               as="h3"
-              className="text-lg font-medium leading-6 text-gray-300 display:inline"
+              className="display:inline text-lg font-medium leading-6 text-gray-300"
             >
               <span className="flex space-x-1">
                 <div>
@@ -58,6 +64,9 @@ export const PrimaryItemModal = ({
             <PrimaryItemModalContent
               setModalState={setOpen}
               modalType={itemInfo.name}
+              itemSingular={itemSingular}
+              findNewHref={findNewHref}
+              canCreateNew={canCreateNew}
             />
           </Dialog.Panel>
         }

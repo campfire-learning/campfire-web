@@ -1,14 +1,5 @@
 "use client";
 
-export default function ClubLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-
-  return (
-    <>
-      {children}
-    </>
-  );
+export default function ClubLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

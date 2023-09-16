@@ -33,15 +33,13 @@ export const SecondaryColumnSection = ({
   });
 
   let openAccordionSaved = JSON.parse(
-    (typeof window !== "undefined" &&
-      sessionStorage.getItem(`accordion-${parentItem?.href}`)) ||
+    (typeof window !== "undefined" && sessionStorage.getItem(`accordion-${parentItem?.href}`)) ||
       "[]"
   );
 
   const toggleAccordionOpen = ({ key }: { key: string }) => {
     openAccordionSaved = JSON.parse(
-      (typeof window !== "undefined" &&
-        sessionStorage.getItem(`accordion-${parentItem?.href}`)) ||
+      (typeof window !== "undefined" && sessionStorage.getItem(`accordion-${parentItem?.href}`)) ||
         "[]"
     );
     const keyIndex = openAccordionSaved.findIndex((x: string) => x === key);
@@ -54,10 +52,7 @@ export const SecondaryColumnSection = ({
     }
 
     if (parentItem) {
-      sessionStorage.setItem(
-        `accordion-${parentItem?.href}`,
-        JSON.stringify(newOpenAccordion)
-      );
+      sessionStorage.setItem(`accordion-${parentItem?.href}`, JSON.stringify(newOpenAccordion));
     }
     return;
   };
@@ -69,11 +64,7 @@ export const SecondaryColumnSection = ({
       aria-label="Column"
     >
       {itemList.map((item) => (
-        <Accordion.Root
-          type="multiple"
-          key={item.name}
-          defaultValue={openAccordionSaved}
-        >
+        <Accordion.Root type="multiple" key={item.name} defaultValue={openAccordionSaved}>
           <Accordion.Item value={item.href}>
             <SecondaryColumnNavButton
               item={item}
@@ -83,10 +74,7 @@ export const SecondaryColumnSection = ({
 
             {item.children && item.children?.length > 0 && (
               <AccordionContent>
-                <SecondaryColumnSection
-                  itemList={item.children}
-                  parentItem={item}
-                />
+                <SecondaryColumnSection itemList={item.children} parentItem={item} />
               </AccordionContent>
             )}
           </Accordion.Item>
